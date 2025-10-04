@@ -805,14 +805,14 @@ class ModernChatWidget(ctk.CTkFrame):
             else:
                 error_msg = response.get("error", "Неизвестная ошибка") if response else "Нет ответа от сервера"
                 self.after(0, lambda: self.add_message(f"❌ Ошибка отправки анализа в чат: {error_msg}", "error"))
-                # Schedule next screenshot even on error
-                self._schedule_next_screenshot_safe()
+                # Take next screenshot even on error
+                self.take_auto_screenshot()
                 
         except Exception as e:
             self.logger.error(f"Error sending analysis to chat: {e}")
             self.after(0, lambda: self.add_message(f"❌ Ошибка отправки анализа в чат: {str(e)}", "error"))
-            # Schedule next screenshot even on error
-            self._schedule_next_screenshot_safe()
+            # Take next screenshot even on error
+            self.take_auto_screenshot()
     
     def _handle_ai_response_with_smart_scheduling(self, ai_response):
         """Handle AI response with smart scheduling based on whether action is needed"""
@@ -846,8 +846,9 @@ class ModernChatWidget(ctk.CTkFrame):
                     self.after(0, lambda: self.add_message(f"✅ Нажата кнопка '{button_name}' ({action})", "assistant"))
                     self.logger.info(f"Action '{action}' executed successfully")
                     
-                    # Schedule next screenshot after action completion (0.5 seconds delay)
-                    self.after(500, self._schedule_next_screenshot_after_action)
+                    # Immediately take next screenshot after action
+                    self.logger.info("Taking next screenshot immediately after action")
+                    self.take_auto_screenshot()
                     
                 else:
                     # Get available buttons for error message
@@ -855,55 +856,19 @@ class ModernChatWidget(ctk.CTkFrame):
                     self.after(0, lambda: self.add_message(f"❌ Кнопка '{action}' не найдена. Доступные кнопки: {', '.join(available_buttons)}", "error"))
                     self.logger.error(f"Failed to execute action: {action}")
                     
-                    # Fallback: schedule next screenshot anyway
-                    self._schedule_next_screenshot_safe()
+                    # Fallback: take next screenshot anyway
+                    self.logger.info("Taking next screenshot after failed action")
+                    self.take_auto_screenshot()
                     
             else:
-                self.logger.info("No action in AI response, scheduling next screenshot normally")
-                # No action needed, schedule next screenshot normally
-                self._schedule_next_screenshot_safe()
+                self.logger.info("No action in AI response, taking next screenshot immediately")
+                # No action needed, take next screenshot immediately
+                self.take_auto_screenshot()
                 
         except Exception as e:
             self.logger.error(f"Error in smart scheduling: {e}")
-            # Fallback: schedule next screenshot anyway
-            self._schedule_next_screenshot_safe()
-    
-    def _schedule_next_screenshot_after_action(self):
-        """Schedule next screenshot after action completion"""
-        try:
-            if not self.auto_screenshots_enabled:
-                return
-            
-            self.logger.info("Scheduling next screenshot after action completion")
-            
-            # Cancel existing timer
-            if self.auto_screenshots_timer:
-                self.after_cancel(self.auto_screenshots_timer)
-            
-            # Schedule next screenshot with normal interval
-            self.auto_screenshots_timer = self.after(self.auto_screenshots_interval * 1000, self.take_auto_screenshot)
-            
-        except Exception as e:
-            self.logger.error(f"Error scheduling next screenshot after action: {e}")
-            self._schedule_next_screenshot_safe()
-    
-    def _schedule_next_screenshot_safe(self):
-        """Safe method to schedule next screenshot with error handling"""
-        try:
-            if not self.auto_screenshots_enabled:
-                return
-            
-            self.logger.info("Scheduling next screenshot safely")
-            
-            # Cancel existing timer
-            if self.auto_screenshots_timer:
-                self.after_cancel(self.auto_screenshots_timer)
-            
-            # Schedule next screenshot with normal interval
-            self.auto_screenshots_timer = self.after(self.auto_screenshots_interval * 1000, self.take_auto_screenshot)
-            
-        except Exception as e:
-            self.logger.error(f"Error in safe screenshot scheduling: {e}")
+            # Fallback: take next screenshot anyway
+            self.take_auto_screenshot()
     
     def show_screenshot_dialog(self):
         """Show screenshot settings dialog"""
@@ -1129,11 +1094,13 @@ class ModernChatWidget(ctk.CTkFrame):
         self.add_message(f"🔄 Автоматические скриншоты: {'ВКЛ' if self.auto_screenshots_enabled else 'ВЫКЛ'}", "assistant")
     
     def start_auto_screenshots(self):
-        """Start automatic screenshots"""
+        """Start automatic screenshots in chain mode"""
         if not self.auto_screenshots_enabled:
             return
         
-        self.schedule_next_screenshot()
+        self.logger.info("Starting auto screenshots in chain mode")
+        # Start immediately with first screenshot
+        self.take_auto_screenshot()
     
     def stop_auto_screenshots(self):
         """Stop automatic screenshots"""
@@ -1154,24 +1121,25 @@ class ModernChatWidget(ctk.CTkFrame):
         self.auto_screenshots_timer = self.after(self.auto_screenshots_interval * 1000, self.take_auto_screenshot)
     
     def take_auto_screenshot(self):
-        """Take automatic screenshot"""
+        """Take automatic screenshot in chain mode"""
         if not self.auto_screenshots_enabled:
             return
         
-        # Check if analysis is in progress
+        # Check if analysis is in progress - if yes, wait a bit and retry
         if self.analysis_in_progress:
-            # Wait and try again
-            self.auto_screenshots_timer = self.after(1000, self.take_auto_screenshot)
+            self.logger.info("Analysis in progress, waiting 200ms and retrying...")
+            self.after(200, self.take_auto_screenshot)
             return
         
         # Take screenshot using existing method
         try:
+            self.logger.info("Taking auto screenshot in chain mode")
             self.take_quick_screenshot()
-            # Note: Next screenshot will be scheduled by _send_analysis_to_chat after analysis
+            # Note: Next screenshot will be triggered by _send_analysis_to_chat after analysis
         except Exception as e:
             self.logger.error(f"Auto screenshot error: {e}")
-            # Schedule retry on error
-            self._schedule_next_screenshot_safe()
+            # On error, wait a bit and retry
+            self.after(1000, self.take_auto_screenshot)
     
     def update_window_title(self):
         """Update window title to show auto screenshot status"""
@@ -1181,7 +1149,7 @@ class ModernChatWidget(ctk.CTkFrame):
             if hasattr(root, 'title'):
                 base_title = "🤖 AI Чат Помощник - Modern"
                 if self.auto_screenshots_enabled:
-                    title = f"{base_title} - Автоскриншоты: ВКЛ ({self.auto_screenshots_interval}с)"
+                    title = f"{base_title} - Автоскриншоты: ВКЛ (цепочка)"
                 else:
                     title = base_title
                 root.title(title)
