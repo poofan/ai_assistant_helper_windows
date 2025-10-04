@@ -30,7 +30,8 @@ class ScreenshotSettingsService:
             "screenshot_type": "fullscreen",
             "prompt": "Проанализируй этот скриншот максимально подробно на русском языке. Опиши все элементы интерфейса, текст, изображения, цвета, расположение элементов, функциональные кнопки, меню, статусы, ошибки, предупреждения, и любые другие детали. Если это веб-страница - укажи URL, заголовок, содержимое. Если это приложение - опиши его функциональность и текущее состояние. Будь максимально детальным и точным в описании.",
             "selected_app": None,
-            "ai_automation_enabled": False  # Включение автоматизации по ответам ИИ
+            "ai_automation_enabled": False,  # Включение автоматизации по ответам ИИ
+            "auto_screenshots_interval": 5  # Интервал автоматических скриншотов в секундах
         }
         
         self.load_settings()
@@ -41,6 +42,19 @@ class ScreenshotSettingsService:
             if self.settings_file.exists():
                 with open(self.settings_file, 'r', encoding='utf-8') as f:
                     self.settings = json.load(f)
+                
+                # Migrate settings - add missing default values
+                settings_updated = False
+                for key, default_value in self.default_settings.items():
+                    if key not in self.settings:
+                        self.settings[key] = default_value
+                        settings_updated = True
+                        self.logger.info(f"Added missing setting {key}: {default_value}")
+                
+                if settings_updated:
+                    self.save_settings()
+                    self.logger.info("Settings migrated and saved")
+                
                 self.logger.info("Screenshot settings loaded successfully")
             else:
                 self.settings = self.default_settings.copy()
@@ -66,9 +80,9 @@ class ScreenshotSettingsService:
     def update_settings(self, **kwargs):
         """Update specific settings"""
         for key, value in kwargs.items():
-            if key in self.settings:
-                self.settings[key] = value
-                self.logger.info(f"Updated setting {key}: {value}")
+            # Always update the setting, even if it's new
+            self.settings[key] = value
+            self.logger.info(f"Updated setting {key}: {value}")
         
         self.save_settings()
     
