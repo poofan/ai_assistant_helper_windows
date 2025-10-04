@@ -676,7 +676,9 @@ class ModernChatWidget(ctk.CTkFrame):
             
             # Take screenshot based on saved settings
             if screenshot_type == "fullscreen":
+                self.logger.info("Attempting full screen screenshot...")
                 screenshot_path = self.screenshot_service.capture_full_screen()
+                self.logger.info(f"Full screen screenshot result: {screenshot_path}")
             elif (screenshot_type == "app" or screenshot_type == "application") and selected_app:
                 # Check if selected_app is a string (from settings) or dict (from running app)
                 if isinstance(selected_app, str):
@@ -715,7 +717,18 @@ class ModernChatWidget(ctk.CTkFrame):
                 self.add_message(f"📷 Скриншот сделан, анализирую...", "assistant")
                 self.analyze_screenshot(screenshot_path, prompt)
             else:
-                self.add_message("❌ Не удалось сделать скриншот. Проверьте настройки.", "error")
+                self.logger.warning("Screenshot failed, attempting retry...")
+                # Try one more time with a small delay
+                import time
+                time.sleep(0.1)  # Small delay
+                retry_screenshot_path = self.screenshot_service.capture_full_screen()
+                self.logger.info(f"Retry screenshot result: {retry_screenshot_path}")
+                
+                if retry_screenshot_path:
+                    self.add_message(f"📷 Скриншот сделан (повторная попытка), анализирую...", "assistant")
+                    self.analyze_screenshot(retry_screenshot_path, prompt)
+                else:
+                    self.add_message("❌ Не удалось сделать скриншот. Проверьте настройки.", "error")
                 
         except Exception as e:
             self.logger.error(f"Quick screenshot error: {e}")
@@ -805,14 +818,14 @@ class ModernChatWidget(ctk.CTkFrame):
             else:
                 error_msg = response.get("error", "Неизвестная ошибка") if response else "Нет ответа от сервера"
                 self.after(0, lambda: self.add_message(f"❌ Ошибка отправки анализа в чат: {error_msg}", "error"))
-                # Take next screenshot even on error
-                self.take_auto_screenshot()
+                # Take next screenshot even on error with delay
+                self.after(100, self.take_auto_screenshot)  # 100ms delay
                 
         except Exception as e:
             self.logger.error(f"Error sending analysis to chat: {e}")
             self.after(0, lambda: self.add_message(f"❌ Ошибка отправки анализа в чат: {str(e)}", "error"))
-            # Take next screenshot even on error
-            self.take_auto_screenshot()
+            # Take next screenshot even on error with delay
+            self.after(100, self.take_auto_screenshot)  # 100ms delay
     
     def _handle_ai_response_with_smart_scheduling(self, ai_response):
         """Handle AI response with smart scheduling based on whether action is needed"""
@@ -846,9 +859,9 @@ class ModernChatWidget(ctk.CTkFrame):
                     self.after(0, lambda: self.add_message(f"✅ Нажата кнопка '{button_name}' ({action})", "assistant"))
                     self.logger.info(f"Action '{action}' executed successfully")
                     
-                    # Immediately take next screenshot after action
-                    self.logger.info("Taking next screenshot immediately after action")
-                    self.take_auto_screenshot()
+                    # Take next screenshot after action with small delay
+                    self.logger.info("Taking next screenshot after action with small delay")
+                    self.after(100, self.take_auto_screenshot)  # 100ms delay
                     
                 else:
                     # Get available buttons for error message
@@ -857,18 +870,18 @@ class ModernChatWidget(ctk.CTkFrame):
                     self.logger.error(f"Failed to execute action: {action}")
                     
                     # Fallback: take next screenshot anyway
-                    self.logger.info("Taking next screenshot after failed action")
-                    self.take_auto_screenshot()
+                    self.logger.info("Taking next screenshot after failed action with small delay")
+                    self.after(100, self.take_auto_screenshot)  # 100ms delay
                     
             else:
-                self.logger.info("No action in AI response, taking next screenshot immediately")
-                # No action needed, take next screenshot immediately
-                self.take_auto_screenshot()
+                self.logger.info("No action in AI response, taking next screenshot with small delay")
+                # No action needed, take next screenshot with small delay
+                self.after(100, self.take_auto_screenshot)  # 100ms delay
                 
         except Exception as e:
             self.logger.error(f"Error in smart scheduling: {e}")
-            # Fallback: take next screenshot anyway
-            self.take_auto_screenshot()
+            # Fallback: take next screenshot anyway with delay
+            self.after(100, self.take_auto_screenshot)  # 100ms delay
     
     def show_screenshot_dialog(self):
         """Show screenshot settings dialog"""
@@ -1134,6 +1147,7 @@ class ModernChatWidget(ctk.CTkFrame):
         # Take screenshot using existing method
         try:
             self.logger.info("Taking auto screenshot in chain mode")
+            # Call take_quick_screenshot in a way that won't cause recursion issues
             self.take_quick_screenshot()
             # Note: Next screenshot will be triggered by _send_analysis_to_chat after analysis
         except Exception as e:
