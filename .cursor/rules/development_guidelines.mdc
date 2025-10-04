@@ -1,0 +1,405 @@
+# AI Chat Messenger - Руководство по разработке
+
+## Стиль кода
+
+### Именование
+- **Классы**: PascalCase (MainWindow, APIClient, ScreenshotService)
+- **Методы**: snake_case (send_message, capture_screenshot, get_running_applications)
+- **Переменные**: snake_case (user_token, screenshot_path, api_response)
+- **Константы**: UPPER_CASE (API_BASE_URL, MAX_RETRY_ATTEMPTS)
+- **Модули**: snake_case (api_client, screenshot_service)
+
+### Структура файлов
+- Каждый модуль в отдельном файле
+- Импорты в начале файла
+- Документация для всех публичных методов
+- Типизация с помощью type hints
+
+### Импорты
+```python
+# Стандартные библиотеки
+import os
+import sys
+import json
+from pathlib import Path
+from typing import Dict, List, Optional
+
+# Внешние библиотеки
+import requests
+from PIL import Image
+
+# Локальные модули
+from .api_client import APIClient
+from ..utils.config import Config
+```
+
+## Архитектурные принципы
+
+### MVC Pattern
+- **Model**: services/ (бизнес-логика и данные)
+- **View**: gui/ (пользовательский интерфейс)
+- **Controller**: main_window.py (координация)
+
+### Service-oriented Architecture
+- Каждый сервис имеет четко определенную ответственность
+- Сервисы слабо связаны между собой
+- Легко тестируются и заменяются
+
+### Dependency Injection
+- Сервисы передаются как параметры
+- Легко мокать для тестирования
+- Слабая связанность компонентов
+
+## Обработка ошибок
+
+### Исключения
+```python
+try:
+    response = self.api_client.send_message(message)
+    if response.get("success"):
+        return response.get("message")
+    else:
+        self.logger.error(f"API error: {response.get('error')}")
+        return None
+except requests.exceptions.RequestException as e:
+    self.logger.error(f"Network error: {e}")
+    return None
+except Exception as e:
+    self.logger.error(f"Unexpected error: {e}")
+    return None
+```
+
+### Логирование
+```python
+import logging
+
+# Настройка логгера
+logger = logging.getLogger(__name__)
+
+# Использование
+logger.info("User logged in successfully")
+logger.warning("API response time is slow")
+logger.error(f"Failed to capture screenshot: {e}")
+logger.debug(f"Processing message: {message}")
+```
+
+### Валидация данных
+```python
+def validate_email(email: str) -> bool:
+    """Validate email format"""
+    import re
+    pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+    return re.match(pattern, email) is not None
+
+def validate_message(message: str) -> bool:
+    """Validate message content"""
+    return message and len(message.strip()) > 0
+```
+
+## Асинхронность
+
+### Threading для UI
+```python
+import threading
+
+def send_message_async(self, message: str):
+    """Send message in background thread"""
+    def _send():
+        try:
+            response = self.api_client.send_message(message)
+            # Update UI in main thread
+            self.root.after(0, lambda: self.update_chat(response))
+        except Exception as e:
+            self.root.after(0, lambda: self.show_error(str(e)))
+    
+    thread = threading.Thread(target=_send, daemon=True)
+    thread.start()
+```
+
+### Обработка длительных операций
+```python
+def capture_screenshot_with_progress(self):
+    """Capture screenshot with progress indication"""
+    # Show progress dialog
+    self.show_progress("Capturing screenshot...")
+    
+    def _capture():
+        try:
+            screenshot_path = self.screenshot_service.capture_full_screen()
+            self.root.after(0, lambda: self.on_screenshot_captured(screenshot_path))
+        except Exception as e:
+            self.root.after(0, lambda: self.on_screenshot_error(str(e)))
+        finally:
+            self.root.after(0, self.hide_progress)
+    
+    threading.Thread(target=_capture, daemon=True).start()
+```
+
+## Конфигурация
+
+### Управление настройками
+```python
+from utils.config import Config
+
+class MyService:
+    def __init__(self, config: Config):
+        self.config = config
+        self.api_url = config.get("api", "base_url", "http://localhost")
+        self.timeout = config.getint("api", "timeout", 30)
+    
+    def update_config(self, section: str, key: str, value: str):
+        """Update configuration value"""
+        self.config.set(section, key, value)
+        self.config.save_config()
+```
+
+### Переменные окружения
+```python
+import os
+
+# Чтение переменных окружения
+api_url = os.getenv("API_URL", "http://147.45.227.57")
+debug_mode = os.getenv("DEBUG", "false").lower() == "true"
+log_level = os.getenv("LOG_LEVEL", "INFO")
+```
+
+## Тестирование
+
+### Unit тесты
+```python
+import unittest
+from unittest.mock import Mock, patch
+from services.api_client import APIClient
+
+class TestAPIClient(unittest.TestCase):
+    def setUp(self):
+        self.config = Mock()
+        self.config.get.return_value = "http://test.api"
+        self.client = APIClient(self.config)
+    
+    @patch('requests.post')
+    def test_send_message_success(self, mock_post):
+        """Test successful message sending"""
+        mock_response = Mock()
+        mock_response.json.return_value = {"success": True, "message": "Hello"}
+        mock_response.raise_for_status.return_value = None
+        mock_post.return_value = mock_response
+        
+        result = self.client.send_message("Hello")
+        
+        self.assertTrue(result["success"])
+        self.assertEqual(result["message"], "Hello")
+```
+
+### Интеграционные тесты
+```python
+def test_full_screenshot_workflow():
+    """Test complete screenshot workflow"""
+    # Setup
+    config = Config("test_config.ini")
+    api_client = APIClient(config)
+    screenshot_service = ScreenshotService()
+    
+    # Test
+    screenshot_path = screenshot_service.capture_full_screen()
+    assert screenshot_path is not None
+    assert os.path.exists(screenshot_path)
+    
+    response = api_client.analyze_image(screenshot_path, "Test prompt")
+    assert response is not None
+```
+
+## Безопасность
+
+### Валидация входных данных
+```python
+def sanitize_input(text: str) -> str:
+    """Sanitize user input"""
+    import html
+    return html.escape(text.strip())
+
+def validate_file_path(path: str) -> bool:
+    """Validate file path for security"""
+    import os
+    # Prevent directory traversal
+    return not (".." in path or path.startswith("/"))
+```
+
+### Безопасное хранение токенов
+```python
+import json
+from pathlib import Path
+
+def save_token_safely(token: str):
+    """Save authentication token securely"""
+    config_dir = Path("config")
+    config_dir.mkdir(exist_ok=True)
+    
+    token_file = config_dir / "auth_token.json"
+    with open(token_file, 'w') as f:
+        json.dump({"token": token}, f)
+    
+    # Set restrictive permissions (Unix only)
+    if hasattr(os, 'chmod'):
+        os.chmod(token_file, 0o600)
+```
+
+## Производительность
+
+### Оптимизация изображений
+```python
+from PIL import Image
+
+def optimize_image(image_path: str, max_size: tuple = (1920, 1080)) -> str:
+    """Optimize image for API upload"""
+    with Image.open(image_path) as img:
+        # Resize if too large
+        if img.size[0] > max_size[0] or img.size[1] > max_size[1]:
+            img.thumbnail(max_size, Image.Resampling.LANCZOS)
+        
+        # Convert to RGB if necessary
+        if img.mode != 'RGB':
+            img = img.convert('RGB')
+        
+        # Save optimized version
+        optimized_path = image_path.replace('.png', '_optimized.png')
+        img.save(optimized_path, 'PNG', optimize=True)
+        return optimized_path
+```
+
+### Кэширование
+```python
+from functools import lru_cache
+
+@lru_cache(maxsize=128)
+def get_running_applications_cached():
+    """Cached version of get_running_applications"""
+    return screenshot_service.get_running_applications()
+
+# Clear cache when needed
+get_running_applications_cached.cache_clear()
+```
+
+## Документация
+
+### Docstrings
+```python
+def send_message(self, message: str, previous_response_id: Optional[str] = None) -> Dict:
+    """
+    Send a chat message to the API.
+    
+    Args:
+        message: The message text to send
+        previous_response_id: Optional response ID for context
+        
+    Returns:
+        Dict containing success status and response data
+        
+    Raises:
+        requests.exceptions.RequestException: If API request fails
+        ValueError: If message is empty or invalid
+        
+    Example:
+        >>> response = api_client.send_message("Hello AI!")
+        >>> if response["success"]:
+        ...     print(response["message"])
+    """
+```
+
+### Типизация
+```python
+from typing import Dict, List, Optional, Union
+
+def process_screenshot(
+    image_path: str, 
+    prompt: str, 
+    options: Optional[Dict[str, Union[str, int]]] = None
+) -> Dict[str, Union[bool, str, List[str]]]:
+    """Process screenshot with type hints"""
+    pass
+```
+
+## Сборка и развертывание
+
+### requirements.txt
+```txt
+# Core dependencies
+requests>=2.31.0
+httpx>=0.24.0
+Pillow>=10.0.0
+mss>=9.0.1
+pyautogui>=0.9.54
+pywin32>=306
+
+# Development dependencies
+pytest>=7.0.0
+black>=23.0.0
+flake8>=6.0.0
+mypy>=1.0.0
+```
+
+### setup.py
+```python
+from setuptools import setup, find_packages
+
+setup(
+    name="ai-chat-messenger",
+    version="1.0.0",
+    packages=find_packages(),
+    install_requires=[
+        "requests>=2.31.0",
+        "httpx>=0.24.0",
+        "Pillow>=10.0.0",
+        "mss>=9.0.1",
+        "pyautogui>=0.9.54",
+        "pywin32>=306",
+    ],
+    entry_points={
+        "console_scripts": [
+            "ai-chat-messenger=main:main",
+        ],
+    },
+)
+```
+
+## Отладка
+
+### Логирование отладки
+```python
+import logging
+
+# Настройка детального логирования
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+
+# Логирование в файл
+file_handler = logging.FileHandler('debug.log')
+file_handler.setLevel(logging.DEBUG)
+logger.addHandler(file_handler)
+```
+
+### Профилирование
+```python
+import cProfile
+import pstats
+
+def profile_function(func):
+    """Profile function performance"""
+    profiler = cProfile.Profile()
+    profiler.enable()
+    
+    result = func()
+    
+    profiler.disable()
+    stats = pstats.Stats(profiler)
+    stats.sort_stats('cumulative')
+    stats.print_stats(10)
+    
+    return result
+```
+
+## Заключение
+
+Следуйте этим руководствам для поддержания качества кода, читаемости и надежности приложения AI Chat Messenger. Регулярно обновляйте документацию и тесты при добавлении новой функциональности.

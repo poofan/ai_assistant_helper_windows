@@ -1,0 +1,425 @@
+# AI Chat Messenger - Устранение неполадок
+
+## Частые проблемы и решения
+
+### Проблемы с установкой зависимостей
+
+#### Ошибка: "No module named pip"
+```bash
+# Решение 1: Переустановка pip
+python -m ensurepip --upgrade
+
+# Решение 2: Скачивание get-pip.py
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+python get-pip.py
+
+# Решение 3: Использование системного pip
+python3 -m pip install --user package_name
+```
+
+#### Ошибка: "Permission denied" при установке
+```bash
+# Решение: Установка для пользователя
+pip install --user package_name
+
+# Или использование виртуального окружения
+python -m venv venv
+venv\Scripts\activate  # Windows
+pip install -r requirements.txt
+```
+
+#### Ошибка: "Microsoft Visual C++ 14.0 is required"
+```bash
+# Решение: Установка Visual Studio Build Tools
+# Скачать с: https://visualstudio.microsoft.com/visual-cpp-build-tools/
+
+# Или использование предкомпилированных пакетов
+pip install --only-binary=all package_name
+```
+
+### Проблемы запуска приложения
+
+#### Ошибка: "ModuleNotFoundError"
+```python
+# Проблема: Не установлены зависимости
+# Решение: Установить все зависимости
+pip install -r requirements.txt
+
+# Проверить установку
+python -c "import requests, PIL, mss, psutil, win32gui; print('All modules imported successfully')"
+```
+
+#### Ошибка: "TclError: couldn't connect to display"
+```python
+# Проблема: GUI не может отобразиться (Linux/WSL)
+# Решение: Использовать X11 forwarding или VNC
+export DISPLAY=:0
+python main.py
+```
+
+#### Ошибка: "ImportError: DLL load failed"
+```python
+# Проблема: Отсутствуют системные библиотеки
+# Решение: Установить Microsoft Visual C++ Redistributable
+# Скачать с: https://aka.ms/vs/17/release/vc_redist.x64.exe
+```
+
+### Проблемы аутентификации
+
+#### Ошибка: "Authentication failed"
+```python
+# Проверить логи
+tail -f logs/ai_chat_messenger.log
+
+# Возможные причины:
+# 1. Неверные учетные данные
+# 2. Проблемы с сетью
+# 3. Недоступность API сервера
+
+# Решение: Очистить сохраненный токен
+rm config/auth_token.json
+```
+
+#### Ошибка: "Token expired"
+```python
+# Проблема: Истек срок действия токена
+# Решение: Автоматическое обновление токена
+def refresh_token(self):
+    """Обновить токен аутентификации"""
+    try:
+        # Попытка обновления токена
+        new_token = self.api_client.refresh_token()
+        if new_token:
+            self.save_auth_token(new_token)
+            return True
+    except Exception as e:
+        self.logger.error(f"Token refresh failed: {e}")
+        # Требуется повторная аутентификация
+        self.logout()
+        return False
+```
+
+### Проблемы чата
+
+#### Ошибка: "No response from server"
+```python
+# Проверить подключение к API
+def test_api_connection(self):
+    """Тест подключения к API"""
+    try:
+        response = requests.get(f"{self.api_url}/health", timeout=5)
+        return response.status_code == 200
+    except Exception as e:
+        self.logger.error(f"API connection test failed: {e}")
+        return False
+
+# Решение: Проверить настройки сети и API URL
+```
+
+#### Ошибка: "Message too long"
+```python
+# Проблема: Сообщение превышает лимит API
+# Решение: Разбить длинное сообщение
+def split_long_message(self, message: str, max_length: int = 4000):
+    """Разбить длинное сообщение на части"""
+    if len(message) <= max_length:
+        return [message]
+    
+    parts = []
+    words = message.split()
+    current_part = ""
+    
+    for word in words:
+        if len(current_part + " " + word) <= max_length:
+            current_part += " " + word if current_part else word
+        else:
+            if current_part:
+                parts.append(current_part)
+            current_part = word
+    
+    if current_part:
+        parts.append(current_part)
+    
+    return parts
+```
+
+### Проблемы скриншотов
+
+#### Ошибка: "Failed to capture screenshot"
+```python
+# Проверить права доступа
+def check_screenshot_permissions(self):
+    """Проверить права на захват экрана"""
+    try:
+        # Попытка захвата тестового скриншота
+        with mss.mss() as sct:
+            sct.grab(sct.monitors[1])
+        return True
+    except Exception as e:
+        self.logger.error(f"Screenshot permission check failed: {e}")
+        return False
+
+# Решение: Запустить от имени администратора или проверить антивирус
+```
+
+#### Ошибка: "No applications found"
+```python
+# Проблема: Не удается получить список приложений
+# Решение: Проверить права доступа к процессам
+def get_running_applications_safe(self):
+    """Безопасное получение списка приложений"""
+    try:
+        applications = []
+        for proc in psutil.process_iter(['pid', 'name']):
+            try:
+                if proc.info['name'] and proc.info['name'] not in ['System', 'Idle']:
+                    applications.append({
+                        'pid': proc.info['pid'],
+                        'name': proc.info['name']
+                    })
+            except (psutil.NoSuchProcess, psutil.AccessDenied):
+                continue
+        return applications
+    except Exception as e:
+        self.logger.error(f"Failed to get applications: {e}")
+        return []
+```
+
+#### Ошибка: "Image analysis failed"
+```python
+# Проверить размер и формат изображения
+def validate_image_for_api(self, image_path: str):
+    """Валидация изображения для API"""
+    try:
+        with Image.open(image_path) as img:
+            # Проверить размер
+            if img.size[0] > 4096 or img.size[1] > 4096:
+                # Сжать изображение
+                img.thumbnail((4096, 4096), Image.Resampling.LANCZOS)
+                img.save(image_path)
+            
+            # Проверить формат
+            if img.format not in ['PNG', 'JPEG', 'JPG']:
+                # Конвертировать в PNG
+                img = img.convert('RGB')
+                new_path = image_path.replace('.jpg', '.png').replace('.jpeg', '.png')
+                img.save(new_path, 'PNG')
+                return new_path
+            
+            return image_path
+    except Exception as e:
+        self.logger.error(f"Image validation failed: {e}")
+        return None
+```
+
+## Проблемы сборки и запуска
+
+### Проблемы с Python версией
+```bash
+# Проверить версию Python
+python --version
+
+# Требуется Python 3.8+
+# Если версия старая, обновить Python
+```
+
+### Проблемы с путями
+```python
+# Проблема: Неправильные пути к файлам
+# Решение: Использовать pathlib для кроссплатформенности
+from pathlib import Path
+
+# Правильно
+config_dir = Path("config")
+config_dir.mkdir(exist_ok=True)
+config_file = config_dir / "config.ini"
+
+# Неправильно
+config_file = "config/config.ini"  # Может не работать на Windows
+```
+
+### Проблемы с кодировкой
+```python
+# Проблема: Ошибки кодировки в логах
+# Решение: Указать кодировку явно
+import logging
+
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('logs/app.log', encoding='utf-8'),
+        logging.StreamHandler()
+    ]
+)
+```
+
+## Отладка и восстановление
+
+### Включение детального логирования
+```python
+# В config.ini
+[logging]
+level = DEBUG
+max_file_size = 10485760
+backup_count = 5
+
+# В коде
+import logging
+logging.getLogger().setLevel(logging.DEBUG)
+```
+
+### Сброс конфигурации
+```python
+def reset_configuration(self):
+    """Сброс конфигурации к значениям по умолчанию"""
+    try:
+        # Удалить файлы конфигурации
+        config_file = Path("config.ini")
+        if config_file.exists():
+            config_file.unlink()
+        
+        auth_file = Path("config/auth_token.json")
+        if auth_file.exists():
+            auth_file.unlink()
+        
+        # Перезапустить приложение
+        self.logger.info("Configuration reset, restarting application")
+        self.restart_application()
+        
+    except Exception as e:
+        self.logger.error(f"Failed to reset configuration: {e}")
+```
+
+### Восстановление после сбоя
+```python
+def recover_from_crash(self):
+    """Восстановление после сбоя"""
+    try:
+        # Проверить целостность файлов
+        self.check_file_integrity()
+        
+        # Очистить временные файлы
+        self.cleanup_temp_files()
+        
+        # Перезагрузить конфигурацию
+        self.reload_configuration()
+        
+        # Проверить подключение к API
+        if not self.test_api_connection():
+            self.show_warning("API server is not available")
+        
+    except Exception as e:
+        self.logger.error(f"Recovery failed: {e}")
+        self.show_error("Failed to recover from crash. Please restart the application.")
+```
+
+## Мониторинг и диагностика
+
+### Проверка состояния системы
+```python
+def system_health_check(self):
+    """Проверка состояния системы"""
+    health_status = {
+        'python_version': sys.version,
+        'dependencies': self.check_dependencies(),
+        'disk_space': self.check_disk_space(),
+        'memory_usage': self.check_memory_usage(),
+        'api_connection': self.test_api_connection(),
+        'screenshot_capability': self.check_screenshot_permissions()
+    }
+    
+    return health_status
+
+def check_dependencies(self):
+    """Проверка установленных зависимостей"""
+    required_modules = ['requests', 'PIL', 'mss', 'psutil', 'win32gui']
+    missing_modules = []
+    
+    for module in required_modules:
+        try:
+            __import__(module)
+        except ImportError:
+            missing_modules.append(module)
+    
+    return {
+        'all_installed': len(missing_modules) == 0,
+        'missing': missing_modules
+    }
+```
+
+### Сбор диагностической информации
+```python
+def collect_diagnostics(self):
+    """Сбор диагностической информации"""
+    diagnostics = {
+        'timestamp': datetime.now().isoformat(),
+        'system_info': {
+            'platform': platform.platform(),
+            'python_version': sys.version,
+            'architecture': platform.architecture()
+        },
+        'application_info': {
+            'version': '1.0.0',
+            'config_file_exists': Path('config.ini').exists(),
+            'log_file_exists': Path('logs/ai_chat_messenger.log').exists()
+        },
+        'dependencies': self.check_dependencies(),
+        'recent_errors': self.get_recent_errors()
+    }
+    
+    # Сохранить в файл
+    diagnostics_file = Path('logs/diagnostics.json')
+    with open(diagnostics_file, 'w') as f:
+        json.dump(diagnostics, f, indent=2)
+    
+    return diagnostics_file
+```
+
+## Полезные команды
+
+### Проверка установки
+```bash
+# Проверить Python
+python --version
+
+# Проверить pip
+pip --version
+
+# Проверить установленные пакеты
+pip list
+
+# Проверить конкретный пакет
+python -c "import requests; print(requests.__version__)"
+```
+
+### Очистка и переустановка
+```bash
+# Очистить кэш pip
+pip cache purge
+
+# Переустановить пакеты
+pip uninstall -r requirements.txt -y
+pip install -r requirements.txt
+
+# Создать чистое окружение
+python -m venv clean_env
+clean_env\Scripts\activate
+pip install -r requirements.txt
+```
+
+### Отладка
+```bash
+# Запуск с отладкой
+python -u main.py
+
+# Запуск с профилированием
+python -m cProfile main.py
+
+# Проверка синтаксиса
+python -m py_compile main.py
+```
+
+## Заключение
+
+Большинство проблем можно решить, следуя этим рекомендациям. Если проблема не решается, соберите диагностическую информацию и обратитесь за помощью с подробным описанием ошибки и логами.

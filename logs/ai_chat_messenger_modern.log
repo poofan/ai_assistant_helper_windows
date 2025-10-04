@@ -1,0 +1,15 @@
+2025-09-26 12:25:37,265 - __main__ - INFO - Starting Modern AI Chat Messenger...
+2025-09-26 12:25:37,266 - utils.config - INFO - Configuration loaded from config.ini
+2025-09-26 12:25:37,266 - __main__ - INFO - Configuration loaded from config.ini
+2025-09-26 12:25:37,340 - services.chat_manager - INFO - Loaded 3 chats from data\chats.json
+2025-09-26 12:25:37,341 - services.chat_manager - INFO - ChatManager initialized. Data directory: data
+2025-09-26 12:25:37,720 - services.screenshot_settings - INFO - Screenshot settings loaded successfully
+2025-09-26 12:25:37,723 - gui.chat_widget - INFO - Markdown renderer initialized successfully
+2025-09-26 12:25:37,745 - gui.main_window_modern - INFO - No auth token found
+2025-09-26 12:25:37,745 - __main__ - ERROR - Application error: LoginDialog.__init__() takes 3 positional arguments but 4 were given
+2025-09-26 12:27:11,080 - __main__ - INFO - Starting Modern AI Chat Messenger...
+2025-09-26 12:27:11,081 - utils.config - INFO - Configuration loaded from config.ini
+2025-09-26 12:27:11,081 - __main__ - INFO - Configuration loaded from config.ini
+2025-09-26 12:27:11,155 - services.chat_manager - INFO - Loaded 3 chats from data\chats.json
+2025-09-26 12:27:11,155 - services.chat_manager - INFO - ChatManager initialized. Data directory: data
+2025-09-26 12:27:11,593 - __main__ - ERROR - Application error: No module named 'gui.screenshot_dialog'

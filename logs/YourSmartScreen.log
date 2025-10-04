@@ -1,0 +1,506 @@
+[2025-08-31 23:03:46.434] [YourSmartScreen] [info] LoggingService initialized successfully
+[2025-08-31 23:03:46.435] [YourSmartScreen] [info] YourSmartScreen application starting...
+[2025-08-31 23:03:46.435] [YourSmartScreen] [info] Application version: 1.0.0
+[2025-08-31 23:03:46.435] [YourSmartScreen] [info] Settings loaded from: config/settings.json
+[2025-08-31 23:03:46.435] [YourSmartScreen] [info] API Base URL: http://localhost:8000
+[2025-08-31 23:03:46.435] [YourSmartScreen] [info] Theme: light
+[2025-08-31 23:03:46.435] [YourSmartScreen] [info] Language: en
+[2025-08-31 23:03:46.435] [YourSmartScreen] [info] API client initialized for http://localhost:8000
+[2025-08-31 23:03:46.435] [YourSmartScreen] [info] API service initialized
+[2025-08-31 23:03:46.435] [YourSmartScreen] [info] Auth service initialized
+[2025-08-31 23:03:46.435] [YourSmartScreen] [info] User is not authenticated
+[2025-08-31 23:03:46.435] [YourSmartScreen] [info] === STAGE 3: WINDOWS API UI ===
+[2025-08-31 23:03:46.435] [YourSmartScreen] [info] Creating Windows API GUI...
+[2025-08-31 23:03:46.435] [YourSmartScreen] [info] MainWindow constructor called
+[2025-08-31 23:03:46.435] [YourSmartScreen] [info] Creating main window...
+[2025-08-31 23:03:46.438] [YourSmartScreen] [info] Tab Control created successfully
+[2025-08-31 23:03:46.444] [YourSmartScreen] [info] LoginWidget constructor called
+[2025-08-31 23:03:46.444] [YourSmartScreen] [info] ChatWidget constructor called
+[2025-08-31 23:03:46.444] [YourSmartScreen] [info] ScreenshotWidget constructor called
+[2025-08-31 23:03:46.444] [YourSmartScreen] [info] SettingsWidget constructor called
+[2025-08-31 23:03:46.444] [YourSmartScreen] [info] UserProfileWidget constructor called
+[2025-08-31 23:03:46.444] [YourSmartScreen] [info] Creating login widget...
+[2025-08-31 23:03:46.448] [YourSmartScreen] [info] Login widget created successfully
+[2025-08-31 23:03:46.448] [YourSmartScreen] [info] Login widget created successfully
+[2025-08-31 23:03:46.448] [YourSmartScreen] [info] MainWindow: LoginWidget callback set successfully
+[2025-08-31 23:03:46.453] [YourSmartScreen] [info] Register widget created successfully
+[2025-08-31 23:03:46.453] [YourSmartScreen] [info] Register widget created successfully
+[2025-08-31 23:03:46.453] [YourSmartScreen] [info] MainWindow: RegisterWidget callback set successfully
+[2025-08-31 23:03:46.453] [YourSmartScreen] [info] Creating chat widget...
+[2025-08-31 23:03:46.456] [YourSmartScreen] [info] Chat widget created successfully
+[2025-08-31 23:03:46.456] [YourSmartScreen] [info] Chat widget created successfully
+[2025-08-31 23:03:46.456] [YourSmartScreen] [info] Creating screenshot widget...
+[2025-08-31 23:03:46.457] [YourSmartScreen] [info] Screenshot widget created successfully
+[2025-08-31 23:03:46.457] [YourSmartScreen] [info] Screenshot widget created successfully
+[2025-08-31 23:03:46.457] [YourSmartScreen] [info] Creating user profile widget...
+[2025-08-31 23:03:46.459] [YourSmartScreen] [info] User profile widget created successfully
+[2025-08-31 23:03:46.459] [YourSmartScreen] [info] User profile widget created successfully
+[2025-08-31 23:03:46.459] [YourSmartScreen] [info] Creating settings widget...
+[2025-08-31 23:03:46.462] [YourSmartScreen] [info] Settings widget created successfully
+[2025-08-31 23:03:46.462] [YourSmartScreen] [info] Settings widget created successfully
+[2025-08-31 23:03:46.462] [YourSmartScreen] [info] MainWindow: showLoginScreen() called
+[2025-08-31 23:03:46.462] [YourSmartScreen] [info] Login widget shown
+[2025-08-31 23:03:46.462] [YourSmartScreen] [info] MainWindow: Login widget shown
+[2025-08-31 23:03:46.462] [YourSmartScreen] [info] MainWindow: Register widget hidden
+[2025-08-31 23:03:46.462] [YourSmartScreen] [info] Chat widget hidden
+[2025-08-31 23:03:46.462] [YourSmartScreen] [info] Screenshot widget hidden
+[2025-08-31 23:03:46.462] [YourSmartScreen] [info] User profile widget hidden
+[2025-08-31 23:03:46.462] [YourSmartScreen] [info] Settings widget hidden
+[2025-08-31 23:03:46.462] [YourSmartScreen] [info] MainWindow: Showing login screen
+[2025-08-31 23:03:46.462] [YourSmartScreen] [info] Main window created successfully
+[2025-08-31 23:03:46.462] [YourSmartScreen] [info] Main window created successfully
+[2025-08-31 23:03:46.483] [YourSmartScreen] [info] Main window shown
+[2025-08-31 23:03:46.483] [YourSmartScreen] [info] Testing API connection...
+[2025-08-31 23:03:50.530] [YourSmartScreen] [warning] API request failed, retrying in 1000ms
+[2025-08-31 23:03:55.597] [YourSmartScreen] [warning] API request failed, retrying in 2000ms
+[2025-08-31 23:04:01.649] [YourSmartScreen] [error] Get current user failed: API request failed after 3 attempts
+[2025-08-31 23:04:01.649] [YourSmartScreen] [error] API connection test failed: API request failed after 3 attempts
+[2025-08-31 23:04:01.649] [YourSmartScreen] [info] Starting Windows message loop...
+[2025-08-31 23:05:11.498] [YourSmartScreen] [info] Application shutting down...
+[2025-08-31 23:05:11.498] [YourSmartScreen] [info] MainWindow destructor called
+[2025-08-31 23:05:11.498] [YourSmartScreen] [info] UserProfileWidget destructor called
+[2025-08-31 23:05:11.498] [YourSmartScreen] [info] SettingsWidget destructor called
+[2025-08-31 23:05:11.498] [YourSmartScreen] [info] ScreenshotWidget destructor called
+[2025-08-31 23:05:11.498] [YourSmartScreen] [info] ChatWidget destructor called
+[2025-08-31 23:05:11.498] [YourSmartScreen] [info] LoginWidget destructor called
+[2025-08-31 23:20:19.834] [YourSmartScreen] [info] LoggingService initialized successfully
+[2025-08-31 23:20:19.835] [YourSmartScreen] [info] YourSmartScreen application starting...
+[2025-08-31 23:20:19.835] [YourSmartScreen] [info] Application version: 1.0.0
+[2025-08-31 23:20:19.835] [YourSmartScreen] [info] Settings loaded from: config/settings.json
+[2025-08-31 23:20:19.835] [YourSmartScreen] [info] API Base URL: http://localhost:8000
+[2025-08-31 23:20:19.835] [YourSmartScreen] [info] Theme: light
+[2025-08-31 23:20:19.835] [YourSmartScreen] [info] Language: en
+[2025-08-31 23:20:19.835] [YourSmartScreen] [info] API client initialized for http://localhost:8000
+[2025-08-31 23:20:19.835] [YourSmartScreen] [info] API service initialized
+[2025-08-31 23:20:19.836] [YourSmartScreen] [info] Auth service initialized
+[2025-08-31 23:20:19.836] [YourSmartScreen] [info] User is not authenticated
+[2025-08-31 23:20:19.836] [YourSmartScreen] [info] === STAGE 3: WINDOWS API UI ===
+[2025-08-31 23:20:19.836] [YourSmartScreen] [info] Creating Windows API GUI...
+[2025-08-31 23:20:19.836] [YourSmartScreen] [info] MainWindow constructor called
+[2025-08-31 23:20:19.836] [YourSmartScreen] [info] Creating main window...
+[2025-08-31 23:20:19.841] [YourSmartScreen] [info] Tab Control created successfully
+[2025-08-31 23:20:19.846] [YourSmartScreen] [info] LoginWidget constructor called
+[2025-08-31 23:20:19.846] [YourSmartScreen] [info] ChatWidget constructor called
+[2025-08-31 23:20:19.846] [YourSmartScreen] [info] ScreenshotWidget constructor called
+[2025-08-31 23:20:19.846] [YourSmartScreen] [info] SettingsWidget constructor called
+[2025-08-31 23:20:19.846] [YourSmartScreen] [info] UserProfileWidget constructor called
+[2025-08-31 23:20:19.846] [YourSmartScreen] [info] Creating login widget...
+[2025-08-31 23:20:19.850] [YourSmartScreen] [info] LoginWidget: Register button created successfully, handle=1443248
+[2025-08-31 23:20:19.850] [YourSmartScreen] [info] Login widget created successfully
+[2025-08-31 23:20:19.850] [YourSmartScreen] [info] Login widget created successfully
+[2025-08-31 23:20:19.850] [YourSmartScreen] [info] MainWindow: LoginWidget callback set successfully
+[2025-08-31 23:20:19.855] [YourSmartScreen] [info] Register widget created successfully
+[2025-08-31 23:20:19.855] [YourSmartScreen] [info] Register widget created successfully
+[2025-08-31 23:20:19.855] [YourSmartScreen] [info] MainWindow: RegisterWidget callback set successfully
+[2025-08-31 23:20:19.855] [YourSmartScreen] [info] Creating chat widget...
+[2025-08-31 23:20:19.858] [YourSmartScreen] [info] Chat widget created successfully
+[2025-08-31 23:20:19.858] [YourSmartScreen] [info] Chat widget created successfully
+[2025-08-31 23:20:19.858] [YourSmartScreen] [info] Creating screenshot widget...
+[2025-08-31 23:20:19.858] [YourSmartScreen] [info] Screenshot widget created successfully
+[2025-08-31 23:20:19.858] [YourSmartScreen] [info] Screenshot widget created successfully
+[2025-08-31 23:20:19.858] [YourSmartScreen] [info] Creating user profile widget...
+[2025-08-31 23:20:19.860] [YourSmartScreen] [info] User profile widget created successfully
+[2025-08-31 23:20:19.860] [YourSmartScreen] [info] User profile widget created successfully
+[2025-08-31 23:20:19.860] [YourSmartScreen] [info] Creating settings widget...
+[2025-08-31 23:20:19.863] [YourSmartScreen] [info] Settings widget created successfully
+[2025-08-31 23:20:19.863] [YourSmartScreen] [info] Settings widget created successfully
+[2025-08-31 23:20:19.863] [YourSmartScreen] [info] MainWindow: showLoginScreen() called
+[2025-08-31 23:20:19.863] [YourSmartScreen] [info] Login widget shown
+[2025-08-31 23:20:19.863] [YourSmartScreen] [info] MainWindow: Login widget shown
+[2025-08-31 23:20:19.863] [YourSmartScreen] [info] MainWindow: Register widget hidden
+[2025-08-31 23:20:19.863] [YourSmartScreen] [info] Chat widget hidden
+[2025-08-31 23:20:19.863] [YourSmartScreen] [info] Screenshot widget hidden
+[2025-08-31 23:20:19.863] [YourSmartScreen] [info] User profile widget hidden
+[2025-[2025-08-31 23:25:52.594] [YourSmartScreen] [info] LoggingService initialized successfully
+[2025-08-31 23:25:52.594] [YourSmartScreen] [info] YourSmartScreen application starting...
+[2025-08-31 23:25:52.594] [YourSmartScreen] [info] Application version: 1.0.0
+[2025-08-31 23:25:52.594] [YourSmartScreen] [info] Settings loaded from: config/settings.json
+[2025-08-31 23:25:52.594] [YourSmartScreen] [info] API Base URL: http://localhost:8000
+[2025-08-31 23:25:52.594] [YourSmartScreen] [info] Theme: light
+[2025-08-31 23:25:52.594] [YourSmartScreen] [info] Language: en
+[2025-08-31 23:25:52.594] [YourSmartScreen] [info] API client initialized for http://localhost:8000
+[2025-08-31 23:25:52.594] [YourSmartScreen] [info] API service initialized
+[2025-08-31 23:25:52.595] [YourSmartScreen] [info] Auth service initialized
+[2025-08-31 23:25:52.595] [YourSmartScreen] [info] User is not authenticated
+[2025-08-31 23:25:52.595] [YourSmartScreen] [info] === STAGE 3: WINDOWS API UI ===
+[2025-08-31 23:25:52.595] [YourSmartScreen] [info] Creating Windows API GUI...
+[2025-08-31 23:25:52.595] [YourSmartScreen] [info] MainWindow constructor called
+[2025-08-31 23:25:52.595] [YourSmartScreen] [info] Creating main window...
+[2025-08-31 23:25:52.598] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=1, wParam=0, lParam=288892578528
+[2025-08-31 23:25:52.599] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=85, wParam=2162896, lParam=3
+[2025-08-31 23:25:52.599] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=297, wParam=0, lParam=0
+[2025-08-31 23:25:52.599] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=528, wParam=1, lParam=2162896
+[2025-08-31 23:25:52.599] [YourSmartScreen] [info] Tab Control created successfully
+[2025-08-31 23:25:52.599] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=85, wParam=1573344, lParam=3
+[2025-08-31 23:25:52.599] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=297, wParam=0, lParam=0
+[2025-08-31 23:25:52.599] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=528, wParam=1, lParam=1573344
+[2025-08-31 23:25:52.599] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=85, wParam=1574318, lParam=3
+[2025-08-31 23:25:52.599] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=297, wParam=0, lParam=0
+[2025-08-31 23:25:52.600] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=528, wParam=1, lParam=1574318
+[2025-08-31 23:25:52.600] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=70, wParam=0, lParam=288892580096
+[2025-08-31 23:25:52.600] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=131, wParam=1, lParam=288892580048
+[2025-08-31 23:25:52.600] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=147, wParam=0, lParam=288892577616
+[2025-08-31 23:25:52.600] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=148, wParam=0, lParam=288892577520
+[2025-08-31 23:25:52.604] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=148, wParam=0, lParam=288892577520
+[2025-08-31 23:25:52.604] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=71, wParam=0, lParam=288892580096
+[2025-08-31 23:25:52.604] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=3, wParam=0, lParam=15270078
+[2025-08-31 23:25:52.604] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=5, wParam=0, lParam=48563360
+[2025-08-31 23:25:52.604] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=147, wParam=0, lParam=288892577056
+[2025-08-31 23:25:52.604] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=127, wParam=2, lParam=0
+[2025-08-31 23:25:52.604] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=127, wParam=0, lParam=0
+[2025-08-31 23:25:52.604] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=127, wParam=1, lParam=0
+[2025-08-31 23:25:52.604] [YourSmartScreen] [info] LoginWidget constructor called
+[2025-08-31 23:25:52.604] [YourSmartScreen] [info] ChatWidget constructor called
+[2025-08-31 23:25:52.604] [YourSmartScreen] [info] ScreenshotWidget constructor called
+[2025-08-31 23:25:52.604] [YourSmartScreen] [info] SettingsWidget constructor called
+[2025-08-31 23:25:52.604] [YourSmartScreen] [info] UserProfileWidget constructor called
+[2025-08-31 23:25:52.604] [YourSmartScreen] [info] Creating login widget...
+[2025-08-31 23:25:52.604] [YourSmartScreen] [info] LoginWidget: Parent handle = 788512
+[2025-08-31 23:25:52.604] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=528, wParam=1, lParam=7865694
+[2025-08-31 23:25:52.604] [YourSmartScreen] [info] LoginWidget: Window created successfully, handle = 7865694
+[2025-08-31 23:25:52.608] [YourSmartScreen] [info] LoginWidget: Register button created successfully, handle=1181066
+[2025-08-31 23:25:52.608] [YourSmartScreen] [info] Login widget created successfully
+[2025-08-31 23:25:52.608] [YourSmartScreen] [info] Login widget created successfully
+[2025-08-31 23:25:52.608] [YourSmartScreen] [info] MainWindow: LoginWidget callback set successfully
+[2025-08-31 23:25:52.608] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=528, wParam=1, lParam=1508750
+[2025-08-31 23:25:52.614] [YourSmartScreen] [info] Register widget created successfully
+[2025-08-31 23:25:52.614] [YourSmartScreen] [info] Register widget created successfully
+[2025-08-31 23:25:52.614] [YourSmartScreen] [info] MainWindow: RegisterWidget callback set successfully
+[2025-08-31 23:25:52.614] [YourSmartScreen] [info] Creating chat widget...
+[2025-08-31 23:25:52.614] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=528, wParam=1, lParam=591732
+[2025-08-31 23:25:52.616] [YourSmartScreen] [info] Chat widget created successfully
+[2025-08-31 23:25:52.616] [YourSmartScreen] [info] Chat widget created successfully
+[2025-08-31 23:25:52.616] [YourSmartScreen] [info] Creating screenshot widget...
+[2025-08-31 23:25:52.616] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=528, wParam=1, lParam=329612
+[2025-08-31 23:25:52.617] [YourSmartScreen] [info] Screenshot widget created successfully
+[2025-08-31 23:25:52.617] [YourSmartScreen] [info] Screenshot widget created successfully
+[2025-08-31 23:25:52.617] [YourSmartScreen] [info] Creating user profile widget...
+[2025-08-31 23:25:52.617] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=528, wParam=1, lParam=1050352
+[2025-08-31 23:25:52.618] [YourSmartScreen] [info] User profile widget created successfully
+[2025-08-31 23:25:52.618] [YourSmartScreen] [info] User profile widget created successfully
+[2025-08-31 23:25:52.618] [YourSmartScreen] [info] Creating settings widget...
+[2025-08-31 23:25:52.618] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=528, wParam=1, lParam=133120
+[2025-08-31 23:25:52.621] [YourSmartScreen] [info] Settings widget created successfully
+[2025-08-31 23:25:52.621] [YourSmartScreen] [info] Settings widget created successfully
+[2025-08-31 23:25:52.621] [YourSmartScreen] [info] MainWindow: showLoginScreen() called
+[2025-08-31 23:25:52.621] [YourSmartScreen] [info] LoginWidget: Showing widget, handle = 7865694
+[2025-08-31 23:25:52.621] [YourSmartScreen] [info] Login widget shown
+[2025-08-31 23:25:52.621] [YourSmartScreen] [info] MainWindow: Login widget shown
+[2025-08-31 23:25:52.621] [YourSmartScreen] [info] MainWindow: Register widget hidden
+[2025-08-31 23:25:52.621] [YourSmartScreen] [info] Chat widget hidden
+[2025-08-31 23:25:52.621] [YourSmartScreen] [info] Screenshot widget hidden
+[2025-08-31 23:25:52.621] [YourSmartScreen] [info] User profile widget hidden
+[2025-08-31 23:25:52.621] [YourSmartScreen] [info] Settings widget hidden
+[2025-08-31 23:25:52.621] [YourSmartScreen] [info] MainWindow: Showing login screen
+[2025-08-31 23:25:52.621] [YourSmartScreen] [info] Main window created successfully
+[2025-08-31 23:25:52.621] [YourSmartScreen] [info] Main window created successfully
+[2025-08-31 23:25:52.622] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=24, wParam=1, lParam=0
+[2025-08-31 23:25:52.622] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=70, wParam=0, lParam=288892580272
+[2025-08-31 23:25:52.623] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=70, wParam=0, lParam=288892580272
+[2025-08-31 23:25:52.623] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=28, wParam=1, lParam=10924
+[2025-08-31 23:25:52.624] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=134, wParam=1, lParam=0
+[2025-08-31 23:25:52.624] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=147, wParam=0, lParam=288892576016
+[2025-08-31 23:25:52.624] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=147, wParam=0, lParam=288892577808
+[2025-08-31 23:25:52.625] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=145, wParam=0, lParam=288892577808
+[2025-08-31 23:25:52.625] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=146, wParam=0, lParam=288892577680
+[2025-08-31 23:25:52.625] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=146, wParam=0, lParam=288892577680
+[2025-08-31 23:25:52.625] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=6, wParam=1, lParam=0
+[2025-08-31 23:25:52.632] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=641, wParam=1, lParam=3221225487
+[2025-08-31 23:25:52.633] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=642, wParam=2, lParam=0
+[2025-08-31 23:25:52.633] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=7, wParam=0, lParam=0
+[2025-08-31 23:25:52.633] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=133, wParam=1, lParam=0
+[2025-08-31 23:25:52.633] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=147, wParam=0, lParam=288892576016
+[2025-08-31 23:25:52.633] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=147, wParam=0, lParam=288892577808
+[2025-08-31 23:25:52.633] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=145, wParam=0, lParam=288892577808
+[2025-08-31 23:25:52.633] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=146, wParam=0, lParam=288892577680
+[2025-08-31 23:25:52.634] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=146, wParam=0, lParam=288892577680
+[2025-08-31 23:25:52.634] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=20, wParam=1308692156, lParam=0
+[2025-08-31 23:25:52.634] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=71, wParam=0, lParam=288892580272
+[2025-08-31 23:25:52.634] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=147, wParam=0, lParam=288892577232
+[2025-08-31 23:25:52.634] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=5, wParam=0, lParam=48563360
+[2025-08-31 23:25:52.634] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=20, wParam=1308692156, lParam=0
+[2025-08-31 23:25:52.635] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=20, wParam=1308692156, lParam=0
+[2025-08-31 23:25:52.637] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=3, wParam=0, lParam=15270078
+[2025-08-31 23:25:52.637] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=15, wParam=0, lParam=0
+[2025-08-31 23:25:52.638] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=20, wParam=117510072, lParam=0
+[2025-08-31 23:25:52.638] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=78, wParam=0, lParam=288892578800
+[2025-08-31 23:25:52.638] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=312, wParam=1308692156, lParam=7865694
+[2025-08-31 23:25:52.640] [YourSmartScreen] [info] Main window shown
+[2025-08-31 23:25:52.640] [YourSmartScreen] [info] Testing API connection...
+[2025-08-31 23:25:56.706] [YourSmartScreen] [warning] API request failed, retrying in 1000ms
+[2025-08-31 23:26:01.774] [YourSmartScreen] [warning] API request failed, retrying in 2000ms
+[2025-08-31 23:26:07.858] [YourSmartScreen] [error] Get current user failed: API request failed after 3 attempts
+[2025-08-31 23:26:07.858] [YourSmartScreen] [error] API connection test failed: API request failed after 3 attempts
+[2025-08-31 23:26:07.859] [YourSmartScreen] [info] Starting Windows message loop...
+[2025-08-31 23:26:07.859] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=70, wParam=0, lParam=288892580288
+[2025-08-31 23:26:07.860] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=131, wParam=1, lParam=288892580240
+[2025-08-31 23:26:07.860] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=147, wParam=0, lParam=288892577808
+[2025-08-31 23:26:07.862] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=133, wParam=2063863791, lParam=0
+[2025-08-31 23:26:07.863] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=147, wParam=0, lParam=288892576032
+[2025-08-31 23:26:07.866] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=147, wParam=0, lParam=288892577824
+[2025-08-31 23:26:07.866] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=145, wParam=0, lParam=288892577824
+[2025-08-31 23:26:07.867] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=146, wParam=0, lParam=288892577696
+[2025-08-31 23:26:07.867] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=146, wParam=0, lParam=288892577696
+[2025-08-31 23:26:07.868] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=20, wParam=18446744073491517209, lParam=0
+[2025-08-31 23:26:07.868] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=71, wParam=0, lParam=288892580288
+[2025-08-31 23:26:07.868] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=5, wParam=0, lParam=48563360
+[2025-08-31 23:26:07.869] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=20, wParam=18446744073491517209, lParam=0
+[2025-08-31 23:26:07.869] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=20, wParam=18446744073491517209, lParam=0
+[2025-08-31 23:26:07.871] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=147, wParam=0, lParam=288892577248
+[2025-08-31 23:26:07.872] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=127, wParam=1, lParam=96
+[2025-08-31 23:26:07.872] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=799, wParam=1, lParam=0
+[2025-08-31 23:26:07.873] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=127, wParam=2, lParam=96
+[2025-08-31 23:26:07.874] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=49407, wParam=0, lParam=0
+[2025-08-31 23:26:07.874] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=127, wParam=0, lParam=96
+[2025-08-31 23:26:07.874] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=36, wParam=0, lParam=288892580288
+[2025-08-31 23:26:07.879] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=257, wParam=13, lParam=3223060481
+[2025-08-31 23:26:07.880] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=134, wParam=0, lParam=0
+[2025-08-31 23:26:07.881] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=147, wParam=0, lParam=288892576032
+[2025-08-31 23:26:07.882] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=147, wParam=0, lParam=288892577824
+[2025-08-31 23:26:07.882] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=145, wParam=0, lParam=288892577824
+[2025-08-31 23:26:07.882] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=146, wParam=0, lParam=288892577696
+[2025-08-31 23:26:07.883] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=146, wParam=0, lParam=288892577696
+[2025-08-31 23:26:07.883] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=6, wParam=0, lParam=0
+[2025-08-31 23:26:07.883] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=28, wParam=0, lParam=8240
+[2025-08-31 23:26:07.883] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=8, wParam=0, lParam=0
+[2025-08-31 23:26:07.884] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=641, wParam=0, lParam=3221225487
+[2025-08-31 23:26:07.884] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=642, wParam=1, lParam=0
+[2025-08-31 23:26:07.885] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=15, wParam=0, lParam=0
+[2025-08-31 23:26:07.885] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=133, wParam=1, lParam=0
+[2025-08-31 23:26:07.885] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=147, wParam=0, lParam=288892574144
+[2025-08-31 23:26:07.885] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=147, wParam=0, lParam=288892575936
+[2025-08-31 23:26:07.885] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=145, wParam=0, lParam=288892575936
+[2025-08-31 23:26:07.885] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=146, wParam=0, lParam=288892575808
+[2025-08-31 23:26:07.886] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=146, wParam=0, lParam=288892575808
+[2025-08-31 23:26:07.886] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=20, wParam=18446744073491517209, lParam=0
+[2025-08-31 23:26:07.888] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=20, wParam=1308692156, lParam=0
+[2025-08-31 23:26:07.888] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=78, wParam=0, lParam=288892578784
+[2025-08-31 23:26:07.888] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=312, wParam=18446744073491517209, lParam=7865694
+[2025-08-31 23:26:10.777] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=132, wParam=0, lParam=19334097
+[2025-08-31 23:26:10.777] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554433
+[2025-08-31 23:26:10.778] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=512, wParam=0, lParam=4064019
+[2025-08-31 23:26:10.783] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=132, wParam=0, lParam=19137497
+[2025-08-31 23:26:10.783] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554433
+[2025-08-31 23:26:10.783] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=512, wParam=0, lParam=3867419
+[2025-08-31 23:26:10.789] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=132, wParam=0, lParam=18744288
+[2025-08-31 23:26:10.789] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554433
+[2025-08-31 23:26:10.789] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=512, wParam=0, lParam=3474210
+[2025-08-31 23:26:10.799] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=132, wParam=0, lParam=18416617
+[2025-08-31 23:26:10.799] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554433
+[2025-08-31 23:26:10.799] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=512, wParam=0, lParam=3146539
+[2025-08-31 23:26:10.807] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=132, wParam=0, lParam=18154484
+[2025-08-31 23:26:10.807] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554433
+[2025-08-31 23:26:10.807] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=512, wParam=0, lParam=2884406
+[2025-08-31 23:26:10.815] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=132, wParam=0, lParam=17761280
+[2025-08-31 23:26:10.815] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554433
+[2025-08-31 23:26:10.815] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=512, wParam=0, lParam=2491202
+[2025-08-31 23:26:10.825] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=132, wParam=0, lParam=17368078
+[2025-08-31 23:26:10.825] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554433
+[2025-08-31 23:26:10.825] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=512, wParam=0, lParam=2098000
+[2025-08-31 23:26:10.833] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=1574318, lParam=33554433
+[2025-08-31 23:26:10.839] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=1574318, lParam=33554433
+[2025-08-31 23:26:10.849] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=1574318, lParam=33554433
+[2025-08-31 23:26:10.858] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=132, wParam=0, lParam=14877775
+[2025-08-31 23:26:10.858] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554437
+[2025-08-31 23:26:10.858] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=160, wParam=5, lParam=14877775
+[2025-08-31 23:26:10.868] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=132, wParam=0, lParam=14419035
+[2025-08-31 23:26:10.868] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554437
+[2025-08-31 23:26:10.868] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=160, wParam=5, lParam=14419035
+[2025-08-31 23:26:10.881] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554434
+[2025-08-31 23:26:10.881] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=160, wParam=2, lParam=13829227
+[2025-08-31 23:26:10.885] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554434
+[2025-08-31 23:26:10.886] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=160, wParam=2, lParam=13173885
+[2025-08-31 23:26:10.893] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554434
+[2025-08-31 23:26:10.894] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=160, wParam=2, lParam=12911753
+[2025-08-31 23:26:10.905] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554434
+[2025-08-31 23:26:10.906] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=160, wParam=2, lParam=12649617
+[2025-08-31 23:26:10.913] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=132, wParam=0, lParam=12321957
+[2025-08-31 23:26:10.914] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554444
+[2025-08-31 23:26:10.914] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=160, wParam=12, lParam=12321957
+[2025-08-31 23:26:10.921] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=132, wParam=0, lParam=12256431
+[2025-08-31 23:26:10.922] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554444
+[2025-08-31 23:26:10.922] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=160, wParam=12, lParam=12256431
+[2025-08-31 23:26:10.948] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=132, wParam=0, lParam=11928810
+[2025-08-31 23:26:10.948] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554444
+[2025-08-31 23:26:10.948] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=160, wParam=12, lParam=11928810
+[2025-08-31 23:26:10.955] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=132, wParam=0, lParam=11928820
+[2025-08-31 23:26:10.956] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554444
+[2025-08-31 23:26:10.956] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=160, wParam=12, lParam=11928820
+[2025-08-31 23:26:10.963] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=132, wParam=0, lParam=11928828
+[2025-08-31 23:26:10.964] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554444
+[2025-08-31 23:26:10.964] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=160, wParam=12, lParam=11928828
+[2025-08-31 23:26:10.971] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=132, wParam=0, lParam=11928836
+[2025-08-31 23:26:10.972] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554444
+[2025-08-31 23:26:10.972] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=160, wParam=12, lParam=11928836
+[2025-08-31 23:26:10.979] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=132, wParam=0, lParam=11928843
+[2025-08-31 23:26:10.980] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554444
+[2025-08-31 23:26:10.980] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=160, wParam=12, lParam=11928843
+[2025-08-31 23:26:10.988] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=674, wParam=0, lParam=0
+[2025-08-31 23:26:11.234] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554452
+[2025-08-31 23:26:11.234] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=160, wParam=20, lParam=11994451
+[2025-08-31 23:26:11.239] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554452
+[2025-08-31 23:26:11.239] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=160, wParam=20, lParam=12322127
+[2025-08-31 23:26:11.247] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554452
+[2025-08-31 23:26:11.247] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=160, wParam=20, lParam=12649802
+[2025-08-31 23:26:11.255] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554452
+[2025-08-31 23:26:11.255] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=160, wParam=20, lParam=12977475
+[2025-08-31 23:26:11.263] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554452
+[2025-08-31 23:26:11.263] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=160, wParam=20, lParam=13370682
+[2025-08-31 23:26:11.271] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554452
+[2025-08-31 23:26:11.271] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=160, wParam=20, lParam=13829424
+[2025-08-31 23:26:11.279] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=132, wParam=0, lParam=14288163
+[2025-08-31 23:26:11.279] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554437
+[2025-08-31 23:26:11.279] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=160, wParam=5, lParam=14288163
+[2025-08-31 23:26:11.285] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=132, wParam=0, lParam=14746900
+[2025-08-31 23:26:11.285] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554437
+[2025-08-31 23:26:11.285] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=160, wParam=5, lParam=14746900
+[2025-08-31 23:26:11.293] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=1574318, lParam=33554433
+[2025-08-31 23:26:11.293] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=674, wParam=0, lParam=0
+[2025-08-31 23:26:11.301] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=1574318, lParam=33554433
+[2025-08-31 23:26:11.311] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=1574318, lParam=33554433
+[2025-08-31 23:26:11.317] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=1574318, lParam=33554433
+[2025-08-31 23:26:11.325] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=1574318, lParam=33554433
+[2025-08-31 23:26:11.333] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=1574318, lParam=33554433
+[2025-08-31 23:26:11.341] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=1574318, lParam=33554433
+[2025-08-31 23:26:11.349] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=1574318, lParam=33554433
+[2025-08-31 23:26:11.355] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=1574318, lParam=33554433
+[2025-08-31 23:26:11.365] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=1574318, lParam=33554433
+[2025-08-31 23:26:11.379] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=1574318, lParam=33554433
+[2025-08-31 23:26:11.449] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=1574318, lParam=33554433
+[2025-08-31 23:26:11.803] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=1574318, lParam=33554433
+[2025-08-31 23:26:11.872] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=528, wParam=513, lParam=1573889
+[2025-08-31 23:26:11.872] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=33, wParam=788512, lParam=33619969
+[2025-08-31 23:26:11.873] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=70, wParam=0, lParam=288892580288
+[2025-08-31 23:26:11.875] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=71, wParam=0, lParam=288892580288
+[2025-08-31 23:26:11.875] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=147, wParam=0, lParam=288892577248
+[2025-08-31 23:26:11.876] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=28, wParam=1, lParam=0
+[2025-08-31 23:26:11.876] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=134, wParam=1, lParam=0
+[2025-08-31 23:26:11.877] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=147, wParam=0, lParam=288892576032
+[2025-08-31 23:26:11.877] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=147, wParam=0, lParam=288892577824
+[2025-08-31 23:26:11.877] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=145, wParam=0, lParam=288892577824
+[2025-08-31 23:26:11.877] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=146, wParam=0, lParam=288892577696
+[2025-08-31 23:26:11.878] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=146, wParam=0, lParam=288892577696
+[2025-08-31 23:26:11.879] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=6, wParam=2, lParam=0
+[2025-08-31 23:26:11.879] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=641, wParam=1, lParam=3221225487
+[2025-08-31 23:26:11.879] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=642, wParam=2, lParam=0
+[2025-08-31 23:26:11.879] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=7, wParam=0, lParam=0
+[2025-08-31 23:26:11.881] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=1574318, lParam=33619969
+[2025-08-31 23:26:11.881] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=78, wParam=0, lParam=288892579360
+[2025-08-31 23:26:11.901] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=1574318, lParam=33554433
+[2025-08-31 23:26:11.907] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=1574318, lParam=33554433
+[2025-08-31 23:26:11.924] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=1574318, lParam=33554433
+[2025-08-31 23:26:12.019] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=1574318, lParam=33685505
+[2025-08-31 23:26:12.019] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=78, wParam=0, lParam=288892579360
+[2025-08-31 23:26:12.057] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=1574318, lParam=33554433
+[2025-08-31 23:26:12.067] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=1574318, lParam=33554433
+[2025-08-31 23:26:12.091] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=1574318, lParam=33554433
+[2025-08-31 23:26:12.101] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=1574318, lParam=33554433
+[2025-08-31 23:26:12.108] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=1574318, lParam=33554433
+[2025-08-31 23:26:12.114] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=1574318, lParam=33554433
+[2025-08-31 23:26:12.121] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=132, wParam=0, lParam=15205645
+[2025-08-31 23:26:12.122] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554437
+[2025-08-31 23:26:12.122] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=160, wParam=5, lParam=15205645
+[2025-08-31 23:26:12.129] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=132, wParam=0, lParam=15074579
+[2025-08-31 23:26:12.130] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554437
+[2025-08-31 23:26:12.130] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=160, wParam=5, lParam=15074579
+[2025-08-31 23:26:12.137] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=132, wParam=0, lParam=14943510
+[2025-08-31 23:26:12.138] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554437
+[2025-08-31 23:26:12.138] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=160, wParam=5, lParam=14943510
+[2025-08-31 23:26:12.145] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=132, wParam=0, lParam=14877975
+[2025-08-31 23:26:12.146] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554437
+[2025-08-31 23:26:12.146] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=160, wParam=5, lParam=14877975
+[2025-08-31 23:26:12.153] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=132, wParam=0, lParam=14746905
+[2025-08-31 23:26:12.154] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554437
+[2025-08-31 23:26:12.154] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=160, wParam=5, lParam=14746905
+[2025-08-31 23:26:12.159] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=132, wParam=0, lParam=14746906
+[2025-08-31 23:26:12.160] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554437
+[2025-08-31 23:26:12.160] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=160, wParam=5, lParam=14746906
+[2025-08-31 23:26:12.173] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=132, wParam=0, lParam=14681371
+[2025-08-31 23:26:12.174] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554437
+[2025-08-31 23:26:12.174] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=160, wParam=5, lParam=14681371
+[2025-08-31 23:26:12.179] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=132, wParam=0, lParam=14615835
+[2025-08-31 23:26:12.180] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554437
+[2025-08-31 23:26:12.180] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=160, wParam=5, lParam=14615835
+[2025-08-31 23:26:12.187] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=132, wParam=0, lParam=14550300
+[2025-08-31 23:26:12.188] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554437
+[2025-08-31 23:26:12.188] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=160, wParam=5, lParam=14550300
+[2025-08-31 23:26:12.195] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=132, wParam=0, lParam=14484765
+[2025-08-31 23:26:12.196] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554437
+[2025-08-31 23:26:12.196] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=160, wParam=5, lParam=14484765
+[2025-08-31 23:26:12.203] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=132, wParam=0, lParam=14353697
+[2025-08-31 23:26:12.204] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554437
+[2025-08-31 23:26:12.204] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=160, wParam=5, lParam=14353697
+[2025-08-31 23:26:12.211] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=132, wParam=0, lParam=14222629
+[2025-08-31 23:26:12.211] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554437
+[2025-08-31 23:26:12.211] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=160, wParam=5, lParam=14222629
+[2025-08-31 23:26:12.221] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=132, wParam=0, lParam=14026029
+[2025-08-31 23:26:12.221] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554437
+[2025-08-31 23:26:12.221] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=160, wParam=5, lParam=14026029
+[2025-08-31 23:26:12.229] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554452
+[2025-08-31 23:26:12.229] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=160, wParam=20, lParam=13894962
+[2025-08-31 23:26:12.237] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554452
+[2025-08-31 23:26:12.237] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=160, wParam=20, lParam=13894964
+[2025-08-31 23:26:12.245] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554452
+[2025-08-31 23:26:12.245] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=160, wParam=20, lParam=13763894
+[2025-08-31 23:26:12.253] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554452
+[2025-08-31 23:26:12.254] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=160, wParam=20, lParam=13763896
+[2025-08-31 23:26:12.261] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554452
+[2025-08-31 23:26:12.261] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=160, wParam=20, lParam=13698361
+[2025-08-31 23:26:12.267] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554452
+[2025-08-31 23:26:12.267] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=160, wParam=20, lParam=13698362
+[2025-08-31 23:26:12.275] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554452
+[2025-08-31 23:26:12.276] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=160, wParam=20, lParam=13698363
+[2025-08-31 23:26:12.285] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554452
+[2025-08-31 23:26:12.285] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=160, wParam=20, lParam=13632828
+[2025-08-31 23:26:12.392] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554452
+[2025-08-31 23:26:12.392] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=160, wParam=20, lParam=13632829
+[2025-08-31 23:26:12.480] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33554452
+[2025-08-31 23:26:12.480] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=160, wParam=20, lParam=13632830
+[2025-08-31 23:26:12.504] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=32, wParam=788512, lParam=33619988
+[2025-08-31 23:26:12.504] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=161, wParam=20, lParam=13632830
+[2025-08-31 23:26:12.627] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=533, wParam=0, lParam=0
+[2025-08-31 23:26:12.627] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=274, wParam=61536, lParam=13632830
+[2025-08-31 23:26:12.628] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=16, wParam=0, lParam=0
+[2025-08-31 23:26:12.628] [YourSmartScreen] [info] MainWindow: handleMessage, uMsg=674, wParam=0, lParam=0
+[2025-08-31 23:26:12.628] [YourSmartScreen] [info] Application shutting down...
+[2025-08-31 23:26:12.628] [YourSmartScreen] [info] MainWindow destructor called
+[2025-08-31 23:26:12.628] [YourSmartScreen] [info] UserProfileWidget destructor called
+[2025-08-31 23:26:12.628] [YourSmartScreen] [info] SettingsWidget destructor called
+[2025-08-31 23:26:12.628] [YourSmartScreen] [info] ScreenshotWidget destructor called
+[2025-08-31 23:26:12.628] [YourSmartScreen] [info] ChatWidget destructor called
+[2025-08-31 23:26:12.628] [YourSmartScreen] [info] LoginWidget destructor called
+[2025-09-02 13:07:06.014] [YourSmartScreen] [info] LoggingService initialized successfully
+[2025-09-02 13:07:06.014] [YourSmartScreen] [info] YourSmartScreen application starting...
+[2025-09-02 13:07:06.014] [YourSmartScreen] [info] Application version: 1.0.0
+[2025-09-02 13:07:06.014] [YourSmartScreen] [info] Settings loaded from: config/settings.json
+[2025-09-02 13:07:06.014] [YourSmartScreen] [info] API Base URL: http://localhost:8000
+[2025-09-02 13:07:06.014] [YourSmartScreen] [info] Theme: light
+[2025-09-02 13:07:06.014] [YourSmartScreen] [info] Language: en
+[2025-09-02 13:07:06.014] [YourSmartScreen] [info] API client initialized for http://localhost:8000
+[2025-09-02 13:07:06.014] [YourSmartScreen] [info] API service initialized
+[2025-09-02 13:07:06.015] [YourSmartScreen] [info] Auth service initialized
+[2025-09-02 13:07:06.015] [YourSmartScreen] [info] User is not authenticated
+[2025-09-02 13:07:06.015] [YourSmartScreen] [info] === STAGE 3: ImGui UI COMPONENTS ===
+[2025-09-02 13:07:06.015] [YourSmartScreen] [info] Creating ImGui application...
+[2025-09-02 13:07:06.015] [YourSmartScreen] [info] Initializing ImGui application...
+[2025-09-02 13:07:06.445] [YourSmartScreen] [info] ScreenshotService initialized. Output directory: C:\Users\poofa\Documents\YourSmartScreen\Screenshots
+[2025-09-02 13:07:06.458] [YourSmartScreen] [info] System tray icon added successfully
+[2025-09-02 13:07:06.458] [YourSmartScreen] [info] NotificationService initialized
+[2025-09-02 13:07:06.458] [YourSmartScreen] [info] AutoStartService initialized. Executable path: C:\git\ai_assistant_helper_windows\build\bin\Release\YourSmartScreen.exe
+[2025-09-02 13:07:06.458] [YourSmartScreen] [info] Loading conversations...
+[2025-09-02 13:07:06.458] [YourSmartScreen] [info] Loading screenshots...
+[2025-09-02 13:07:06.458] [YourSmartScreen] [info] Conversations endpoint not available in new API
+[2025-09-02 13:07:06.458] [YourSmartScreen] [info] User profile loaded
+[2025-09-02 13:07:06.458] [YourSmartScreen] [info] ImGui application initialized successfully
+[2025-09-02 13:07:06.458] [YourSmartScreen] [info] ImGui application initialized successfully
+[2025-09-02 13:07:06.458] [YourSmartScreen] [info] Starting GUI...
+[2025-09-02 13:08:52.277] [YourSmartScreen] [info] Attempting registration for user: poofan
+[2025-09-02 13:08:52.277] [YourSmartScreen] [info] Starting registration for user: poofan
+[2025-09-02 13:08:52.277] [YourSmartScreen] [info] Request body: {"email":"anokhin_d@mail.ru","password":"12345678","username":"poofan"}
+[2025-09-02 13:08:52.277] [YourSmartScreen] [warning] API request exception, retrying: [json.exception.type_error.302] type must be boolean, but is object
+[2025-09-02 13:08:52.277] [YourSmartScreen] [warning] API request exception, retrying: [json.exception.type_error.302] type must be boolean, but is object
+[2025-09-02 13:08:52.277] [YourSmartScreen] [error] Registration failed: [json.exception.type_error.302] type must be boolean, but is object
+[2025-09-02 13:08:52.277] [YourSmartScreen] [error] Registration failed - API returned false
+[2025-09-02 13:09:00.793] [YourSmartScreen] [info] Application shutting down...
+[2025-09-02 13:09:00.793] [YourSmartScreen] [info] Shutting down ImGui application...
+[2025-09-02 13:09:00.816] [YourSmartScreen] [info] NotificationService destroyed

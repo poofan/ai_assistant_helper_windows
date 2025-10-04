@@ -1,0 +1,120 @@
+# YourSmartScreen - Структура кода
+
+## Namespace структура
+```cpp
+namespace YourSmartScreen {
+    namespace Core {        // Интерфейсы и базовые компоненты
+    namespace Services {    // Бизнес-логика
+    namespace UI {         // Пользовательский интерфейс
+    namespace Models {     // Модели данных
+}
+```
+
+## Основные интерфейсы (Core/Interfaces.h)
+
+### IApiService
+- Аутентификация: loginAsync, registerAsync, logoutAsync
+- Чат: sendChatMessageAsync, getConversationsAsync
+- Скриншоты: analyzeScreenshotAsync, getScreenshotsAsync
+- Подписки: getSubscriptionInfoAsync, createSubscriptionAsync
+
+### IAuthService
+- Управление токенами: setToken, clearToken, isTokenExpired
+- Аутентификация: loginAsync, registerAsync, logout
+- Пользователь: getCurrentUser, isAuthenticated
+
+### ISettingsService
+- API настройки: getApiBaseUrl, setApiBaseUrl
+- UI настройки: getTheme, setTheme, getLanguage
+- Системные: getAutoStart, getNotificationsEnabled
+
+## Модели данных
+
+### User (Models/User.h)
+```cpp
+struct User {
+    std::string id, username, email;
+    std::string subscriptionPlan;
+    int requestsLimit, requestsUsed;
+    std::chrono::system_clock::time_point subscriptionExpiresAt;
+    bool isActive;
+};
+```
+
+### Chat (Models/Chat.h)
+```cpp
+struct Message {
+    std::string id, content;
+    MessageType type; // User, AI, System
+    MessageStatus status; // Sending, Sent, Failed, Received
+    std::chrono::system_clock::time_point timestamp;
+};
+
+struct ChatRequest {
+    std::string message, model;
+    std::optional<std::string> conversationId, context;
+};
+```
+
+### Screenshot (Models/Screenshot.h)
+```cpp
+struct Screenshot {
+    std::string id, imagePath, prompt;
+    std::optional<std::string> analysis;
+    ScreenshotArea area;
+    std::chrono::system_clock::time_point timestamp;
+    std::string model;
+};
+```
+
+## Сервисы
+
+### ApiService
+- HTTP клиент на основе cpp-httplib
+- Асинхронные операции через std::future
+- Retry логика для надежности
+- Обработка ошибок и статус кодов
+
+### AuthService
+- JWT токен управление
+- Локальное хранение токенов
+- Проверка истечения токенов
+- Детальные результаты аутентификации
+
+### ScreenshotService
+- Захват экрана через Windows API
+- Сохранение в PNG формат
+- Base64 кодирование для API
+- Локальное хранение метаданных
+
+## UI компоненты
+
+### ImGuiApp (главное приложение)
+- Инициализация GLFW и ImGui
+- Координация всех UI компонентов
+- Обработка ввода и событий
+- Управление состоянием приложения
+
+### ImGuiChat
+- Список бесед в боковой панели
+- Область сообщений с автоскроллом
+- Поле ввода с поддержкой Enter
+- Асинхронная отправка сообщений
+
+### ImGuiLogin
+- Формы входа и регистрации
+- Валидация полей в реальном времени
+- Асинхронная аутентификация
+- Обработка ошибок и статусов
+
+## Асинхронность
+- Все API вызовы асинхронные (std::future)
+- UI остается отзывчивым во время операций
+- Проверка статуса операций в Update методах
+- Обработка ошибок и таймаутов
+
+## Локализация
+- Поддержка English/Russian
+- Singleton паттерн для Localization
+- Макрос L(key) для удобного использования
+- Автоматическое переключение без перезапуска

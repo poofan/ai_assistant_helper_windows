@@ -1,0 +1,269 @@
+# YourSmartScreen - API интеграция
+
+## API Endpoints
+
+### Базовый URL
+- **Продакшн**: http://147.45.227.57
+- **Тестовый**: http://localhost:8000 (test_server.py)
+
+### Аутентификация
+```
+POST /auth/login
+{
+    "username": "string",
+    "password": "string"
+}
+Response: {
+    "access_token": "jwt_token",
+    "token_type": "Bearer",
+    "expires_in": 3600
+}
+
+POST /auth/register
+{
+    "username": "string",
+    "email": "string", 
+    "password": "string",
+    "first_name": "string",
+    "last_name": "string"
+}
+
+POST /auth/logout
+Headers: Authorization: Bearer <token>
+
+GET /auth/verify
+Headers: Authorization: Bearer <token>
+```
+
+### Чат
+```
+POST /chat/send
+Headers: Authorization: Bearer <token>
+{
+    "message": "string",
+    "model": "gpt-4o-mini",
+    "conversation_id": "optional_string",
+    "context": "optional_string"
+}
+Response: {
+    "response": "string",
+    "conversation_id": "string",
+    "timestamp": "ISO8601",
+    "tokens_used": 150,
+    "model": "gpt-4o-mini",
+    "processing_time": 1.5
+}
+
+GET /chat/conversations
+Headers: Authorization: Bearer <token>
+Response: [
+    {
+        "id": "string",
+        "title": "string",
+        "created_at": "ISO8601",
+        "updated_at": "ISO8601",
+        "message_count": 10,
+        "model": "gpt-4o-mini"
+    }
+]
+
+GET /chat/conversations/{id}
+Headers: Authorization: Bearer <token>
+Response: {
+    "id": "string",
+    "title": "string",
+    "messages": [...],
+    "model": "gpt-4o-mini"
+}
+```
+
+### Скриншоты
+```
+POST /screenshots/analyze
+Headers: Authorization: Bearer <token>
+Content-Type: multipart/form-data
+{
+    "image": <file>,
+    "prompt": "string",
+    "model": "gpt-4o-mini"
+}
+Response: {
+    "analysis": "string",
+    "image_id": "string",
+    "timestamp": "ISO8601",
+    "tokens_used": 200,
+    "model": "gpt-4o-mini",
+    "processing_time": 2.1,
+    "tags": ["ui", "button"],
+    "confidence": "high"
+}
+
+GET /screenshots
+Headers: Authorization: Bearer <token>
+Response: [
+    {
+        "id": "string",
+        "image_path": "string",
+        "prompt": "string",
+        "analysis": "string",
+        "timestamp": "ISO8601",
+        "model": "gpt-4o-mini"
+    }
+]
+```
+
+### Подписки
+```
+GET /subscriptions/info
+Headers: Authorization: Bearer <token>
+Response: {
+    "user_id": "string",
+    "is_active": true,
+    "days_remaining": 25,
+    "requests_remaining": 950,
+    "can_use_service": true,
+    "subscription": {
+        "id": "string",
+        "plan": "pro",
+        "status": "active",
+        "monthly_requests_limit": 1000,
+        "monthly_requests_used": 50
+    }
+}
+
+GET /subscriptions/plans
+Response: {
+    "plans": {
+        "free": {
+            "monthly_requests": 10,
+            "max_concurrent_requests": 1,
+            "features": ["basic_chat"],
+            "price_monthly": 0.0,
+            "price_yearly": 0.0,
+            "currency": "USD"
+        },
+        "pro": {
+            "monthly_requests": 1000,
+            "max_concurrent_requests": 5,
+            "features": ["chat", "screenshots", "priority"],
+            "price_monthly": 19.99,
+            "price_yearly": 199.99,
+            "currency": "USD"
+        }
+    }
+}
+
+POST /subscriptions/create
+Headers: Authorization: Bearer <token>
+{
+    "plan": "pro",
+    "payment_method": "credit_card",
+    "amount": 19.99,
+    "currency": "USD"
+}
+```
+
+## AI Модели
+
+### Доступные модели
+```cpp
+// OpenAI модели
+const std::string GPT_4O_MINI = "gpt-4.1-mini";
+const std::string GPT_4O = "gpt-4o";
+const std::string GPT_3_5_TURBO = "gpt-3.5-turbo";
+
+// OpenRouter модели (с префиксом)
+const std::string OPENROUTER_GPT_4O_MINI = "openai/gpt-4.1-mini";
+const std::string OPENROUTER_GPT_4O = "openai/gpt-4o";
+
+// Claude модели
+const std::string CLAUDE_3_5_SONNET = "anthropic/claude-3-5-sonnet";
+const std::string CLAUDE_3_OPUS = "anthropic/claude-3-opus";
+
+// Gemini модели
+const std::string GEMINI_PRO = "google/gemini-pro";
+const std::string GEMINI_FLASH = "google/gemini-flash";
+```
+
+### Выбор модели
+- **Free план**: только gpt-3.5-turbo
+- **Basic план**: gpt-3.5-turbo, gpt-4.1-mini
+- **Pro план**: все модели
+- **Enterprise план**: все модели + приоритет
+
+## HTTP статус коды
+
+### Успешные ответы
+- **200 OK** - успешный запрос
+- **201 Created** - ресурс создан
+
+### Ошибки клиента
+- **400 Bad Request** - неверный запрос
+- **401 Unauthorized** - не авторизован
+- **402 Payment Required** - требуется оплата
+- **403 Forbidden** - доступ запрещен
+- **404 Not Found** - ресурс не найден
+- **422 Unprocessable Entity** - ошибка валидации
+
+### Ошибки сервера
+- **500 Internal Server Error** - внутренняя ошибка сервера
+- **502 Bad Gateway** - ошибка шлюза
+- **503 Service Unavailable** - сервис недоступен
+
+## Обработка ошибок
+
+### Retry логика
+```cpp
+template<typename Func>
+auto retryOperation(Func operation, int maxRetries = 3) {
+    for (int i = 0; i < maxRetries; ++i) {
+        try {
+            return operation();
+        } catch (const std::exception& e) {
+            if (i == maxRetries - 1) throw;
+            std::this_thread::sleep_for(std::chrono::milliseconds(1000 * (i + 1)));
+        }
+    }
+}
+```
+
+### Обработка сетевых ошибок
+- Таймауты: 30 секунд для обычных запросов, 60 для загрузки файлов
+- Retry для 5xx ошибок
+- Показ пользователю понятных сообщений об ошибках
+- Логирование всех ошибок для отладки
+
+## Аутентификация
+
+### JWT токены
+- Токены содержат информацию о пользователе
+- Время жизни: 1 час (3600 секунд)
+- Автоматическое обновление при истечении
+- Локальное хранение в зашифрованном виде
+
+### Заголовки
+```
+Authorization: Bearer <jwt_token>
+Content-Type: application/json
+Accept: application/json
+```
+
+## Тестовый сервер
+
+### Запуск
+```bash
+python test_server.py
+```
+
+### Функции
+- Эмуляция всех API endpoints
+- Тестовые пользователи (testuser/password)
+- Имитация AI ответов
+- Логирование всех запросов
+- Поддержка CORS для веб-клиентов
+
+### Тестовые данные
+- **Пользователь**: testuser / password
+- **Подписка**: Pro план с 1000 запросов
+- **Модели**: все доступные модели
+- **Скриншоты**: сохранение в папку screenshots/

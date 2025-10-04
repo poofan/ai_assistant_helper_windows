@@ -1,0 +1,86 @@
+{
+  "buttons": {
+    "fold": {
+      "name": "Скинуть",
+      "coordinates": [
+        1400,
+        800,
+        110,
+        55
+      ],
+      "description": "Кнопка сброса карт"
+    },
+    "call": {
+      "name": "Уравнять",
+      "coordinates": [
+        1550,
+        800,
+        110,
+        55
+      ],
+      "description": "Кнопка уравнивания ставки"
+    },
+    "raise": {
+      "name": "Повысить",
+      "coordinates": [
+        1700,
+        800,
+        110,
+        55
+      ],
+      "description": "Кнопка повышения ставки"
+    },
+    "check": {
+      "name": "Пропустить",
+      "coordinates": [
+        1400,
+        750,
+        110,
+        55
+      ],
+      "description": "Кнопка пропуска хода"
+    }
+  },
+  "info_elements": {
+    "player_cards": {
+      "name": "Карты игрока",
+      "coordinates": [
+        100,
+        600,
+        55,
+        80
+      ],
+      "description": "Область карт игрока"
+    },
+    "player_balance": {
+      "name": "Баланс игрока",
+      "coordinates": [
+        400,
+        690,
+        90,
+        35
+      ],
+      "description": "Отображение баланса игрока"
+    },
+    "table_cards": {
+      "name": "Карты на столе",
+      "coordinates": [
+        500,
+        300,
+        55,
+        80
+      ],
+      "description": "Общие карты на столе"
+    },
+    "bank_total": {
+      "name": "Общий банк",
+      "coordinates": [
+        1100,
+        250,
+        80,
+        35
+      ],
+      "description": "Общая сумма в банке"
+    }
+  }
+}

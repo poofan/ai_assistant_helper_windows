@@ -1,0 +1,6 @@
+{
+  "screenshot_type": "fullscreen",
+  "prompt": "Проанализируй скриншот. Выдай информацию о распознанных объектах",
+  "selected_app": null,
+  "ai_automation_enabled": false
+}
