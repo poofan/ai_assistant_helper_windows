@@ -39,6 +39,12 @@ class ModernChatWidget(ctk.CTkFrame):
         self.current_chat_id = None
         self.last_response_id = None  # Store the last response ID for conversation context
         
+        # Auto screenshot state
+        self.auto_screenshots_enabled = False
+        self.auto_screenshots_interval = self.screenshot_settings.get_settings().get("auto_screenshots_interval", 5)  # seconds
+        self.auto_screenshots_timer = None
+        self.analysis_in_progress = False
+        
         # Create widgets
         self.create_widgets()
         
@@ -171,6 +177,11 @@ class ModernChatWidget(ctk.CTkFrame):
         self.message_entry.bind("<Control-c>", lambda e: self.copy_text())
         self.message_entry.bind("<Control-v>", lambda e: self.paste_text())
         self.message_entry.bind("<Control-a>", lambda e: self.select_all())
+        
+        # Bind auto screenshot hotkey Ctrl+Shift+S
+        # Use focus_set to ensure the widget can receive key events
+        self.focus_set()
+        self.bind("<Control-Shift-S>", lambda e: self.toggle_auto_screenshots())
     
     def show_context_menu(self, event):
         """Show context menu at cursor position"""
@@ -734,6 +745,9 @@ class ModernChatWidget(ctk.CTkFrame):
     def _analyze_screenshot_async(self, screenshot_path, prompt):
         """Analyze screenshot asynchronously"""
         try:
+            # Set analysis in progress flag
+            self.analysis_in_progress = True
+            
             # Update loading message
             self.after(0, lambda: self.add_message("🔄 Отправляю изображение на сервер...", "assistant"))
             
@@ -766,6 +780,9 @@ class ModernChatWidget(ctk.CTkFrame):
         except Exception as e:
             self.logger.error(f"Image analysis error: {e}")
             self.after(0, lambda: self.add_message(f"❌ Ошибка анализа изображения: {str(e)}", "error"))
+        finally:
+            # Reset analysis in progress flag
+            self.analysis_in_progress = False
     
     def _send_analysis_to_chat(self, analysis):
         """Send screenshot analysis to OpenAI chat for context"""
@@ -798,6 +815,8 @@ class ModernChatWidget(ctk.CTkFrame):
             dialog = ScreenshotDialog(self, self.screenshot_service, self.screenshot_settings, self.coordinates_manager)
             if dialog.result:
                 self.logger.info("Screenshot settings updated")
+                # Update auto screenshots interval if settings changed
+                self.update_auto_screenshots_interval()
         except ImportError:
             self.add_message("⚠️ Диалог настроек скриншота недоступен", "error")
             self.logger.warning("ScreenshotDialog not available")
@@ -998,4 +1017,92 @@ class ModernChatWidget(ctk.CTkFrame):
             return psutil.pid_exists(app_info.get("pid", 0))
         except Exception:
             return False
+    
+    # Auto Screenshot Methods
+    def toggle_auto_screenshots(self):
+        """Toggle auto screenshot mode"""
+        self.auto_screenshots_enabled = not self.auto_screenshots_enabled
+        
+        if self.auto_screenshots_enabled:
+            self.start_auto_screenshots()
+        else:
+            self.stop_auto_screenshots()
+        
+        self.update_window_title()
+        self.add_message(f"🔄 Автоматические скриншоты: {'ВКЛ' if self.auto_screenshots_enabled else 'ВЫКЛ'}", "assistant")
+    
+    def start_auto_screenshots(self):
+        """Start automatic screenshots"""
+        if not self.auto_screenshots_enabled:
+            return
+        
+        self.schedule_next_screenshot()
+    
+    def stop_auto_screenshots(self):
+        """Stop automatic screenshots"""
+        if self.auto_screenshots_timer:
+            self.after_cancel(self.auto_screenshots_timer)
+            self.auto_screenshots_timer = None
+    
+    def schedule_next_screenshot(self):
+        """Schedule next screenshot based on interval and analysis status"""
+        if not self.auto_screenshots_enabled:
+            return
+        
+        # Cancel existing timer
+        if self.auto_screenshots_timer:
+            self.after_cancel(self.auto_screenshots_timer)
+        
+        # Schedule next screenshot
+        self.auto_screenshots_timer = self.after(self.auto_screenshots_interval * 1000, self.take_auto_screenshot)
+    
+    def take_auto_screenshot(self):
+        """Take automatic screenshot"""
+        if not self.auto_screenshots_enabled:
+            return
+        
+        # Check if analysis is in progress
+        if self.analysis_in_progress:
+            # Wait and try again
+            self.auto_screenshots_timer = self.after(1000, self.take_auto_screenshot)
+            return
+        
+        # Take screenshot using existing method
+        try:
+            self.take_quick_screenshot()
+            # Schedule next screenshot after current one is processed
+            self.schedule_next_screenshot()
+        except Exception as e:
+            self.logger.error(f"Auto screenshot error: {e}")
+            # Schedule retry
+            self.schedule_next_screenshot()
+    
+    def update_window_title(self):
+        """Update window title to show auto screenshot status"""
+        try:
+            # Find the main window
+            root = self.winfo_toplevel()
+            if hasattr(root, 'title'):
+                base_title = "🤖 AI Чат Помощник - Modern"
+                if self.auto_screenshots_enabled:
+                    title = f"{base_title} - Автоскриншоты: ВКЛ ({self.auto_screenshots_interval}с)"
+                else:
+                    title = base_title
+                root.title(title)
+        except Exception as e:
+            self.logger.error(f"Error updating window title: {e}")
+    
+    def update_auto_screenshots_interval(self):
+        """Update auto screenshots interval from settings"""
+        try:
+            new_interval = self.screenshot_settings.get_settings().get("auto_screenshots_interval", 5)
+            if new_interval != self.auto_screenshots_interval:
+                self.auto_screenshots_interval = new_interval
+                # Restart auto screenshots if they're enabled to use new interval
+                if self.auto_screenshots_enabled:
+                    self.stop_auto_screenshots()
+                    self.start_auto_screenshots()
+                self.update_window_title()
+        except Exception as e:
+            self.logger.error(f"Error updating auto screenshots interval: {e}")
     

@@ -158,6 +158,45 @@ class ScreenshotDialog(ctk.CTkToplevel):
         )
         self.ai_automation_checkbox.pack(anchor="w", padx=15, pady=(0, 15))
         
+        # Auto Screenshots settings
+        auto_screenshots_frame = ctk.CTkFrame(content_frame)
+        auto_screenshots_frame.pack(fill="x", pady=(0, 15))
+        
+        auto_screenshots_label = ctk.CTkLabel(
+            auto_screenshots_frame,
+            text="📸 Автоматические скриншоты:",
+            font=ctk.CTkFont(size=14, weight="bold")
+        )
+        auto_screenshots_label.pack(anchor="w", padx=15, pady=(15, 5))
+        
+        # Auto screenshots interval setting
+        interval_frame = ctk.CTkFrame(auto_screenshots_frame)
+        interval_frame.pack(fill="x", padx=15, pady=(0, 10))
+        
+        interval_label = ctk.CTkLabel(
+            interval_frame,
+            text="⏱️ Интервал (секунды):",
+            font=ctk.CTkFont(size=12)
+        )
+        interval_label.pack(side="left", padx=(10, 5), pady=10)
+        
+        self.auto_screenshots_interval = ctk.CTkEntry(
+            interval_frame,
+            width=80,
+            font=ctk.CTkFont(size=12),
+            placeholder_text="5"
+        )
+        self.auto_screenshots_interval.pack(side="left", padx=(0, 10), pady=10)
+        
+        # Info label about hotkey
+        info_label = ctk.CTkLabel(
+            auto_screenshots_frame,
+            text="💡 Используйте Ctrl+Shift+S для включения/выключения автоматических скриншотов",
+            font=ctk.CTkFont(size=11),
+            text_color="#6c757d"
+        )
+        info_label.pack(anchor="w", padx=15, pady=(0, 15))
+        
         # Fixed buttons frame at bottom
         buttons_frame = ctk.CTkFrame(main_frame)
         buttons_frame.pack(fill="x", pady=(10, 0))
@@ -239,6 +278,11 @@ class ScreenshotDialog(ctk.CTkToplevel):
             ai_automation_enabled = settings.get("ai_automation_enabled", False)
             self.ai_automation_var.set(ai_automation_enabled)
             
+            # Load auto screenshots interval
+            auto_screenshots_interval = settings.get("auto_screenshots_interval", 5)
+            self.auto_screenshots_interval.delete(0, tk.END)
+            self.auto_screenshots_interval.insert(0, str(auto_screenshots_interval))
+            
             # Load selected app
             selected_app = settings.get("selected_app")
             if selected_app:
@@ -268,12 +312,21 @@ class ScreenshotDialog(ctk.CTkToplevel):
             # Get AI automation setting
             ai_automation_enabled = self.ai_automation_var.get()
             
+            # Get auto screenshots interval
+            try:
+                auto_screenshots_interval = int(self.auto_screenshots_interval.get() or "5")
+                if auto_screenshots_interval < 1:
+                    auto_screenshots_interval = 5
+            except ValueError:
+                auto_screenshots_interval = 5
+            
             # Update settings
             self.screenshot_settings.update_settings(
                 screenshot_type=screenshot_type,
                 prompt=prompt,
                 selected_app=selected_app,
-                ai_automation_enabled=ai_automation_enabled
+                ai_automation_enabled=ai_automation_enabled,
+                auto_screenshots_interval=auto_screenshots_interval
             )
             
             self.result = True
