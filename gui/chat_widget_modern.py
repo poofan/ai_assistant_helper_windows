@@ -178,10 +178,8 @@ class ModernChatWidget(ctk.CTkFrame):
         self.message_entry.bind("<Control-v>", lambda e: self.paste_text())
         self.message_entry.bind("<Control-a>", lambda e: self.select_all())
         
-        # Bind auto screenshot hotkey Ctrl+Shift+S
-        # Use focus_set to ensure the widget can receive key events
-        self.focus_set()
-        self.bind("<Control-Shift-S>", lambda e: self.toggle_auto_screenshots())
+        # Bind auto screenshot hotkey Ctrl+Shift+S to main window
+        self.bind_hotkey()
     
     def show_context_menu(self, event):
         """Show context menu at cursor position"""
@@ -1105,4 +1103,23 @@ class ModernChatWidget(ctk.CTkFrame):
                 self.update_window_title()
         except Exception as e:
             self.logger.error(f"Error updating auto screenshots interval: {e}")
+    
+    def bind_hotkey(self):
+        """Bind global hotkey for auto screenshots"""
+        try:
+            # Get the main window (root)
+            root = self.winfo_toplevel()
+            
+            # Bind to main window
+            root.bind_all("<Control-Shift-S>", lambda e: self.toggle_auto_screenshots())
+            
+            # Also bind to self as backup
+            self.bind("<Control-Shift-S>", lambda e: self.toggle_auto_screenshots())
+            
+            # Bind to message entry as backup
+            self.message_entry.bind("<Control-Shift-S>", lambda e: self.toggle_auto_screenshots())
+            
+            self.logger.info("Auto screenshot hotkey Ctrl+Shift+S bound successfully")
+        except Exception as e:
+            self.logger.error(f"Error binding hotkey: {e}")
     
