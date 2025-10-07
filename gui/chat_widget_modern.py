@@ -765,8 +765,9 @@ class ModernChatWidget(ctk.CTkFrame):
             # Send screenshot for analysis
             response = self.api_client.analyze_image(screenshot_path, prompt)
             
-            if response and response.get("success"):
-                analysis = response.get("message", "No analysis received")
+            if response and (response.get("success") or response.get("analysis")):
+                # Try to get analysis from either 'analysis' or 'message' field
+                analysis = response.get("analysis") or response.get("message", "No analysis received")
                 
                 # Add analysis to chat as AI message (for display)
                 self.after(0, lambda: self.add_message(f"📷 Анализ скриншота:\n\n{analysis}", "assistant"))
@@ -785,7 +786,7 @@ class ModernChatWidget(ctk.CTkFrame):
                 self.logger.info("Screenshot analysis completed")
                 
             else:
-                error_msg = response.get("message", "Неизвестная ошибка") if response else "Нет ответа от сервера"
+                error_msg = response.get("error") or response.get("message", "Неизвестная ошибка") if response else "Нет ответа от сервера"
                 self.after(0, lambda: self.add_message(f"❌ Ошибка анализа: {error_msg}", "error"))
                 
         except Exception as e:

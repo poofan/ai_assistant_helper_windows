@@ -221,7 +221,8 @@ class APIClient:
                 if result.get("analysis"):
                     return {
                         "success": True,
-                        "message": result.get("analysis", ""),
+                        "analysis": result.get("analysis", ""),
+                        "message": result.get("analysis", ""),  # Keep both for compatibility
                         "model": result.get("model"),
                         "tokens_used": result.get("tokens_used"),
                         "processing_time": result.get("processing_time")
